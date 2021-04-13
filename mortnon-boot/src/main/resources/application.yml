@@ -1,0 +1,48 @@
+mortnon:
+  # 版本号
+  version: 0.0.1
+  # 静态文件访问地址
+  resource-handlers: |
+    /api/**=classpath:/api/
+
+springdoc:
+  # swagger配置页面
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operations-sorter: method
+    #custom path for api docs
+    url: /api/openapi.json
+
+server:
+  # 端口号
+  port: 8081
+  servlet:
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+spring:
+  resources:
+    static-locations: classpath:api/
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 服务模块
+    devtools:
+      restart:
+        # 热部署开关
+        enabled: true
+    servlet:
+      # 文件上传配置
+      multipart:
+        # 指定上传文件的临时目录
+        location: ./upload_tmp
+        # 单个文件最大值
+        max-file-size: 55MB
+        # 单个请求文件总计最大值
+        max-request-size: 100MB

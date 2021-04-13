@@ -11,4 +11,12 @@
 
     <artifactId>mortnon-utils</artifactId>
 
+    <dependencies>
+        <!-- ini格式处理 -->
+        <dependency>
+            <groupId>org.ini4j</groupId>
+            <artifactId>ini4j</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

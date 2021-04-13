@@ -1,0 +1,128 @@
+{
+  "components": {
+    "schemas": {
+      "_hellomanrequest": {
+        "properties": {
+          "id": {
+            "format": "string",
+            "description": "id",
+            "type": "string"
+          },
+          "name": {
+            "format": "string",
+            "description": "姓名",
+            "type": "string"
+          },
+          "age": {
+            "format": "int32",
+            "description": "年龄",
+            "type": "integer"
+          }
+        }
+      },
+      "_hellomanresponse": {
+        "properties": {
+          "name": {
+            "format": "string",
+            "description": "姓名",
+            "type": "string"
+          },
+          "hello": {
+            "format": "string",
+            "description": "欢迎语",
+            "type": "string"
+          }
+        }
+      },
+      "_hellorequest": {},
+      "_helloresponse": {}
+    }
+  },
+  "servers": [
+    {
+      "url": ""
+    }
+  ],
+  "openapi": "3.0.3",
+  "paths": {
+    "/hello": {
+      "get": {
+        "summary": "这是我第一个酷毙了的接口",
+        "deprecated": false,
+        "description": "这是我第一个酷毙了的接口",
+        "tags": [
+          "hello world"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "97431c50ef8157fb8e1b06c36e4a223a",
+        "parameters": []
+      }
+    },
+    "/helloman": {
+      "post": {
+        "summary": "跟人打招呼的接口",
+        "deprecated": false,
+        "description": "跟人打招呼的接口",
+        "tags": [
+          "hello world"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json; charset\u003dutf-8": {
+              "schema": {
+                "$ref": "#/components/schemas/_hellomanrequest"
+              },
+              "examples": {
+                "json": {
+                  "summary": "test data",
+                  "value": "{\n\t\"id\": \"183\",\n\t\"name\": \"健柏.田\",\n\t\"age\": 15\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/_hellomanresponse"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "{\n\t\"name\": \"健柏.田\",\n\t\"hello\": \"k4k6l6\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "0d59da563f3e80d225096126b7390481",
+        "parameters": []
+      }
+    }
+  },
+  "info": {
+    "title": "mortnon",
+    "version": "1.0.0"
+  }
+}
