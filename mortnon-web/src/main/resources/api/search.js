@@ -2,21 +2,36 @@ let api = [];
 api.push({
     alias: 'api',
     order: '1',
-    desc: 'hello world',
-    link: 'hello_world',
+    desc: 'api工具',
+    link: 'api工具',
     list: []
 })
 api[0].list.push({
     order: '1',
-    desc: '这是我第一个酷毙了的接口',
+    desc: '跳转到api页面',
 });
 api[0].list.push({
+    order: '2',
+    desc: '跳转到swagger页面',
+});
+api.push({
+    alias: 'HelloController',
+    order: '2',
+    desc: 'hello world',
+    link: 'hello_world',
+    list: []
+})
+api[1].list.push({
+    order: '1',
+    desc: '这是我第一个酷毙了的接口',
+});
+api[1].list.push({
     order: '2',
     desc: '跟人打招呼的接口',
 });
 api.push({
     alias: 'dict',
-    order: '2',
+    order: '3',
     desc: '数据字典',
     link: 'dict_list',
     list: []

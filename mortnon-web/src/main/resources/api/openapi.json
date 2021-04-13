@@ -1,6 +1,7 @@
 {
   "components": {
     "schemas": {
+      "_apiresponse": {},
       "_hellomanrequest": {
         "properties": {
           "id": {
@@ -34,8 +35,11 @@
           }
         }
       },
+      "_apirequest": {},
+      "_swaggerresponse": {},
       "_hellorequest": {},
-      "_helloresponse": {}
+      "_helloresponse": {},
+      "_swaggerrequest": {}
     }
   },
   "servers": [
@@ -75,6 +79,36 @@
         "parameters": []
       }
     },
+    "/swagger": {
+      "get": {
+        "summary": "跳转到swagger页面",
+        "deprecated": false,
+        "description": "跳转到swagger页面",
+        "tags": [
+          "api工具"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "e9bc63cf3ceab8b8c981d011bfef866f",
+        "parameters": []
+      }
+    },
     "/helloman": {
       "post": {
         "summary": "跟人打招呼的接口",
@@ -92,7 +126,7 @@
               "examples": {
                 "json": {
                   "summary": "test data",
-                  "value": "{\n\t\"id\": \"183\",\n\t\"name\": \"健柏.田\",\n\t\"age\": 15\n}"
+                  "value": "{\n\t\"id\": \"127\",\n\t\"name\": \"建辉.唐\",\n\t\"age\": 5\n}"
                 }
               }
             }
@@ -109,7 +143,7 @@
                 "examples": {
                   "json": {
                     "summary": "test data",
-                    "value": "{\n\t\"name\": \"健柏.田\",\n\t\"hello\": \"k4k6l6\"\n}"
+                    "value": "{\n\t\"name\": \"建辉.唐\",\n\t\"hello\": \"4ak2wm\"\n}"
                   }
                 }
               }
@@ -117,6 +151,36 @@
           }
         },
         "operationId": "0d59da563f3e80d225096126b7390481",
+        "parameters": []
+      }
+    },
+    "/api": {
+      "get": {
+        "summary": "跳转到api页面",
+        "deprecated": false,
+        "description": "跳转到api页面",
+        "tags": [
+          "api工具"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "json": {
+                    "summary": "test data",
+                    "value": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "6ecd8d59d4093ca22c882da1b2f6edc1",
         "parameters": []
       }
     }
