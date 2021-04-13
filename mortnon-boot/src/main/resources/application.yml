@@ -27,8 +27,6 @@ server:
     min-spare-threads: 30
 
 spring:
-  resources:
-    static-locations: classpath:api/
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
