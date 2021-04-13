@@ -12,6 +12,12 @@
     <artifactId>mortnon-service</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.mt</groupId>
             <artifactId>mortnon-utils</artifactId>

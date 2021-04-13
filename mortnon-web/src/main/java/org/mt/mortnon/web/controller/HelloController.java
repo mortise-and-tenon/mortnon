@@ -1,5 +1,7 @@
 package org.mt.mortnon.web.controller;
 
+import org.mt.mortnon.sys.service.HelloService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private HelloService helloService;
+
     /**
      * hello world
      * @return hello world
      */
     @GetMapping("/hello")
     public String helloWorld() {
-        return "Hello Mortnon!";
+        return "Hello " + helloService.hello() + "!";
     }
 }

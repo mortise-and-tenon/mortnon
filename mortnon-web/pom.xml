@@ -16,6 +16,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mt</groupId>
+            <artifactId>mortnon-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mt</groupId>
+            <artifactId>mortnon-biz</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
