@@ -35,6 +35,21 @@
             <groupId>org.mt</groupId>
             <artifactId>mortnon-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mt</groupId>
+            <artifactId>mortnon-dal</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

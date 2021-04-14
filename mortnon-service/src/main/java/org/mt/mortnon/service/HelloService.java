@@ -1,5 +1,7 @@
 package org.mt.mortnon.service;
 
+import org.mt.mortnon.dal.sys.domain.SysUser;
+
 /**
  * hello
  *
@@ -15,4 +17,9 @@ public interface HelloService {
      */
     String hello();
 
+    /**
+     * 测试获取用户
+     * @return
+     */
+    SysUser getUser();
 }

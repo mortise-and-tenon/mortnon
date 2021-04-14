@@ -52,7 +52,7 @@ public class HelloController {
     public MortnonResult<HelloOutput> hello(@Validated @RequestBody HelloInput helloInput) {
         HelloOutput helloOutput = new HelloOutput();
         helloOutput.setName(helloInput.getName());
-        helloOutput.setHello("hello");
+        helloOutput.setHello("hello " + helloService.getUser().getUserName());
         return ResultUtil.success(helloOutput);
     }
 

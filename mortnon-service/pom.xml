@@ -27,5 +27,10 @@
             <groupId>org.mt</groupId>
             <artifactId>mortnon-utils</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mt</groupId>
+            <artifactId>mortnon-dal</artifactId>
+        </dependency>
     </dependencies>
 </project>

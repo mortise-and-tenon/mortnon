@@ -1,8 +1,11 @@
 package org.mt.mortnon.service.impl;
 
+import org.mt.mortnon.dal.sys.domain.SysUser;
+import org.mt.mortnon.dal.sys.mapper.SysUserMapper;
 import org.mt.mortnon.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloServiceImpl implements HelloService {
 
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloServiceImpl.class);
 
     @Override
@@ -23,5 +29,10 @@ public class HelloServiceImpl implements HelloService {
         LOGGER.error("错误日志测试打印");
 
         return "Mortnon";
+    }
+
+    @Override
+    public SysUser getUser() {
+        return sysUserMapper.getById(1L);
     }
 }
