@@ -2,6 +2,7 @@ package org.mt.mortnon.web.vo;
 
 /**
  * 这是一个测试用的输出
+ * @author zhangsiyuan
  */
 public class HelloOutput {
 

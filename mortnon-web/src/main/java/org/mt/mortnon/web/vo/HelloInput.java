@@ -7,11 +7,13 @@ public class HelloInput {
 
     /**
      * id
+     * @required
      */
     private String id;
 
     /**
      * 姓名
+     * @required
      */
     private String name;
 

@@ -1,7 +1,6 @@
 {
   "components": {
     "schemas": {
-      "_apiresponse": {},
       "_hellomanrequest": {
         "properties": {
           "id": {
@@ -19,8 +18,13 @@
             "description": "年龄",
             "type": "integer"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
       },
+      "_apiresponse": {},
       "_hellomanresponse": {
         "properties": {
           "name": {
@@ -44,7 +48,7 @@
   },
   "servers": [
     {
-      "url": ""
+      "url": "http://localhost:8080"
     }
   ],
   "openapi": "3.0.3",
@@ -126,7 +130,7 @@
               "examples": {
                 "json": {
                   "summary": "test data",
-                  "value": "{\n\t\"id\": \"127\",\n\t\"name\": \"建辉.唐\",\n\t\"age\": 5\n}"
+                  "value": "{\n\t\"id\": \"61\",\n\t\"name\": \"天翊.徐\",\n\t\"age\": 2\n}"
                 }
               }
             }
@@ -143,7 +147,7 @@
                 "examples": {
                   "json": {
                     "summary": "test data",
-                    "value": "{\n\t\"name\": \"建辉.唐\",\n\t\"hello\": \"4ak2wm\"\n}"
+                    "value": "{\n\t\"name\": \"天翊.徐\",\n\t\"hello\": \"pruy59\"\n}"
                   }
                 }
               }

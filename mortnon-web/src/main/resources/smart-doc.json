@@ -1,3 +1,30 @@
 {
-  "outPath": "./src/main/resources/api"
+  "serverUrl": "http://localhost:8080",
+  "outPath": "./src/main/resources/api",
+  "allInOne": true,
+  "coverOld": true,
+  "packageFilters": "",
+  "style": "xt256",
+  "createDebugPage": true,
+  "projectName": "mortnon",
+  "requestFiledToUnderLine": true,
+  "responseFieldToUnderline": true,
+  "inlineEnum": true,
+  "recursionLimit":7,
+  "requestHeaders": [
+    {
+      "name": "token",
+      "type": "string",
+      "desc": "desc",
+      "required": false,
+      "value":"55",
+      "since": "-"
+    }
+  ],
+  "errorCodeDictionaries": [{
+    "title": "业务错误码",
+    "enumClassName": "org.mt.mortnon.enums.ErrorCodeEnum",
+    "codeField": "errorCode",
+    "descField": "description"
+  }]
 }

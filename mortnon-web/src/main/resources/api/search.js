@@ -1,39 +1,46 @@
 let api = [];
 api.push({
-    alias: 'api',
-    order: '1',
-    desc: 'api工具',
-    link: 'api工具',
-    list: []
-})
-api[0].list.push({
-    order: '1',
-    desc: '跳转到api页面',
-});
-api[0].list.push({
-    order: '2',
-    desc: '跳转到swagger页面',
-});
-api.push({
     alias: 'HelloController',
-    order: '2',
-    desc: 'hello world',
+    order: '1',
     link: 'hello_world',
+    desc: 'hello world',
     list: []
 })
-api[1].list.push({
+api[0].list.push({
     order: '1',
     desc: '这是我第一个酷毙了的接口',
 });
-api[1].list.push({
+api[0].list.push({
     order: '2',
     desc: '跟人打招呼的接口',
 });
 api.push({
-    alias: 'dict',
+    alias: 'ApiController',
+    order: '2',
+    link: 'api工具',
+    desc: 'api工具',
+    list: []
+})
+api[1].list.push({
+    order: '1',
+    desc: '跳转到api页面',
+});
+api[1].list.push({
+    order: '2',
+    desc: '跳转到swagger页面',
+});
+api.push({
+    alias: 'error',
     order: '3',
-    desc: '数据字典',
+    link: 'error_code_list',
+    desc: '错误码列表',
+    list: []
+})
+api.push({
+    alias: 'dict',
+    order: '4',
     link: 'dict_list',
+    desc: '数据字典',
     list: []
 })
 document.onkeydown = keyDownSearch;
@@ -52,7 +59,6 @@ function keyDownSearch(e) {
                     order: apiData.order,
                     desc: apiData.desc,
                     link: apiData.link,
-                    alias: apiData.alias,
                     list: apiData.list
                 });
             } else {
@@ -70,7 +76,6 @@ function keyDownSearch(e) {
                     const data = {
                         order: apiData.order,
                         desc: apiData.desc,
-                        alias: apiData.alias,
                         link: apiData.link,
                         list: methodListTemp
                     };
@@ -113,13 +118,13 @@ function buildAccordion(apiData, liClass, display) {
     let html = "";
     let doc;
     if (apiData.length > 0) {
-         for (let j = 0; j < apiData.length; j++) {
+        for (let j = 0; j < apiData.length; j++) {
             html += '<li class="'+liClass+'">';
-            html += '<a class="dd" href="' + apiData[j].alias + '.html#header">' + apiData[j].order + '.&nbsp;' + apiData[j].desc + '</a>';
+            html += '<a class="dd" href="#_' + apiData[j].link + '">' + apiData[j].order + '.&nbsp;' + apiData[j].desc + '</a>';
             html += '<ul class="sectlevel2" style="'+display+'">';
             doc = apiData[j].list;
             for (let m = 0; m < doc.length; m++) {
-                html += '<li><a href="' + apiData[j].alias + '.html#_' + apiData[j].order + '_' + doc[m].order + '_' + doc[m].desc + '">' + apiData[j].order + '.' + doc[m].order + '.&nbsp;' + doc[m].desc + '</a> </li>';
+                html += '<li><a href="#_' + apiData[j].order + '_' + doc[m].order + '_' + doc[m].desc + '">' + apiData[j].order + '.' + doc[m].order + '.&nbsp;' + doc[m].desc + '</a> </li>';
             }
             html += '</ul>';
             html += '</li>';
