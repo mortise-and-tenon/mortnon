@@ -1,4 +1,4 @@
-package org.mt.mortnon.sys.service;
+package org.mt.mortnon.service;
 
 /**
  * hello

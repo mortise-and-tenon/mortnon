@@ -1,7 +1,7 @@
 package org.mt.mortnon.web.controller;
 
 import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.sys.service.HelloService;
+import org.mt.mortnon.service.HelloService;
 import org.mt.mortnon.utils.Asserts;
 import org.mt.mortnon.web.utils.ResultUtil;
 import org.mt.mortnon.web.vo.HelloInput;
