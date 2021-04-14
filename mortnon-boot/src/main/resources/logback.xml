@@ -68,6 +68,13 @@
         </encoder>
     </appender>
 
+    <!--    -->
+    <appender name="async_log" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>250</queueSize>
+        <appender-ref ref="api-digest-appender"/>
+    </appender>
+
     <!-- service摘要日志输出  -->
     <appender name="service-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/service-digest.log</file>
@@ -123,6 +130,7 @@
     <root level="info">
         <appender-ref ref="file_info" />
         <appender-ref ref="file_error" />
+        <appender-ref ref="async_log" />
     </root>
 
     <logger name="api-digest" level="info">
