@@ -1,11 +1,13 @@
 package org.mt.mortnon.dal.sys.mapper;
 
 import org.mt.mortnon.dal.sys.domain.SysUser;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author dongfangzan
  * @date 2021-04-14 20:25:12
  */
+@Repository
 public interface SysUserMapper {
     /**
      * 根据id获取参数
