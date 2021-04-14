@@ -25,11 +25,10 @@ public class HelloController {
     private HelloService helloService;
 
     /**
-     * 这是我第一个酷毙了的接口
+     * Hello Mortnon
      *
-     * @apiNote 这是一个详细描述，很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长
-     * 很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的注释
-     * @return hello world
+     * @apiNote 你好 Mortnon
+     * @return
      */
     @GetMapping("/hello")
     public MortnonResult<String> helloWorld() {
@@ -37,13 +36,13 @@ public class HelloController {
     }
 
     /**
-     * 跟人打招呼的接口
+     * Hello Mortnon with validate
      *
-     * @param helloInput 呵呵
+     * @param helloInput
      * @return 返回
      */
-    @PostMapping("/helloman")
-    public MortnonResult<HelloOutput> helloman(@Validated @RequestBody HelloInput helloInput) {
+    @PostMapping("/hello")
+    public MortnonResult<HelloOutput> hello(@Validated @RequestBody HelloInput helloInput) {
         HelloOutput helloOutput = new HelloOutput();
         helloOutput.setName(helloInput.getName());
         helloOutput.setHello("hello");

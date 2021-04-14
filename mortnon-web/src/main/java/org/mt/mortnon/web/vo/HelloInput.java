@@ -15,14 +15,14 @@ public class HelloInput {
     /**
      * id
      */
-    @NotNull
+    @NotNull(message = "id不能为空")
     private String id;
 
     /**
      * 姓名
      * @required
      */
-    @NotNull
+    @NotNull(message = "姓名不能为空")
     private String name;
 
     /**

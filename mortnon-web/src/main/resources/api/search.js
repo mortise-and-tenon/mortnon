@@ -8,11 +8,11 @@ api.push({
 })
 api[0].list.push({
     order: '1',
-    desc: '这是我第一个酷毙了的接口',
+    desc: 'Hello Mortnon',
 });
 api[0].list.push({
     order: '2',
-    desc: '跟人打招呼的接口',
+    desc: 'Hello Mortnon with validate',
 });
 api.push({
     alias: 'ApiController',
