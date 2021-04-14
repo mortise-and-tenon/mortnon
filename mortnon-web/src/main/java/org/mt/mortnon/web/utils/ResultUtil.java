@@ -29,6 +29,21 @@ public class ResultUtil {
         return mortnonResult;
     }
 
+    /**
+     * 返回成功
+     *
+     * @param <T>
+     * @return
+     */
+    public static <T> MortnonResult<T> success() {
+        MortnonResult<T> mortnonResult = new MortnonResult<>();
+        mortnonResult.setSuccess(true);
+        mortnonResult.setErrorCode(ErrorCodeEnum.SUCCESS.getErrorCode());
+        mortnonResult.setMessage(ErrorCodeEnum.SUCCESS.getDescription());
+
+        return mortnonResult;
+    }
+
     public static <T> MortnonResult<T> fail(T t, ErrorCodeEnum errorCodeEnum, String msg) {
         MortnonResult<T> mortnonResult = new MortnonResult<>();
         mortnonResult.setSuccess(false);

@@ -4,6 +4,8 @@ import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.exceptions.MortnonBaseException;
 import org.mt.mortnon.web.utils.ResultUtil;
 import org.mt.mortnon.web.vo.MortnonResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,6 +27,11 @@ import java.util.stream.Collectors;
 @ResponseBody
 public class GlobalExceptionHandler {
 
+    /** 日志 */
+    public static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    public static final String EXCEPTION_TAG = "exception_tag";
+
     /**
      * 统一异常处理
      *
@@ -35,7 +42,10 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public <T> MortnonResult<T> exceptionHandler(HttpServletRequest request, Exception e) {
-        // 打印错误异常 TODO
+        // 打印错误异常
+        logger.error(e.getMessage());
+
+        request.setAttribute(EXCEPTION_TAG, e);
 
         // 封装错误码
         ErrorCodeEnum errorCodeEnum = ErrorCodeEnum.SYSTEM_ERROR;

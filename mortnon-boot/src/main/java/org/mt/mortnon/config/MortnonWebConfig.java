@@ -3,9 +3,11 @@ package org.mt.mortnon.config;
 import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.properties.MortnonProperties;
 import org.mt.mortnon.utils.IniUtil;
+import org.mt.mortnon.web.interceptor.ApiLogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,6 +25,9 @@ public class MortnonWebConfig implements WebMvcConfigurer {
     @Autowired
     private MortnonProperties mortnonProperties;
 
+    @Autowired
+    private ApiLogInterceptor interceptor;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 设置项目静态资源访问
@@ -36,6 +41,11 @@ public class MortnonWebConfig implements WebMvcConfigurer {
                         .addResourceLocations(resourceLocations);
             }
         }
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(interceptor);
     }
 
     @Override

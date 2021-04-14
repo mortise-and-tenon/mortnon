@@ -14,6 +14,10 @@ api[0].list.push({
     order: '2',
     desc: 'Hello Mortnon with validate',
 });
+api[0].list.push({
+    order: '3',
+    desc: '调用异常接口',
+});
 api.push({
     alias: 'ApiController',
     order: '2',

@@ -1,10 +1,14 @@
 package org.mt.mortnon.web.controller;
 
+import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.sys.service.HelloService;
+import org.mt.mortnon.utils.Asserts;
 import org.mt.mortnon.web.utils.ResultUtil;
 import org.mt.mortnon.web.vo.HelloInput;
 import org.mt.mortnon.web.vo.HelloOutput;
 import org.mt.mortnon.web.vo.MortnonResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HelloController {
+
+    /** 日志 */
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
     private HelloService helloService;
@@ -47,5 +54,21 @@ public class HelloController {
         helloOutput.setName(helloInput.getName());
         helloOutput.setHello("hello");
         return ResultUtil.success(helloOutput);
+    }
+
+    /**
+     * 调用异常接口
+     *
+     * @return
+     */
+    @GetMapping("/exception")
+    public MortnonResult<Void> exception() {
+
+        LOGGER.info("调用异常测试日志");
+        LOGGER.error("错误：调用异常测试日志");
+
+        Asserts.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, "故意做的系统异常");
+
+        return ResultUtil.success();
     }
 }
