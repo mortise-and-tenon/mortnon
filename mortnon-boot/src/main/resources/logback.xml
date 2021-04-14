@@ -72,7 +72,6 @@
     <appender name="async_log" class="ch.qos.logback.classic.AsyncAppender">
         <discardingThreshold>0</discardingThreshold>
         <queueSize>250</queueSize>
-        <appender-ref ref="api-digest-appender"/>
     </appender>
 
     <!-- service摘要日志输出  -->
