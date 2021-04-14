@@ -16,11 +16,11 @@ public class ApiController {
      * 跳转到api页面
      *
      * @return api页面地址
-     * @page /api/api.html
+     * @page /api/debug-all.html
      */
     @GetMapping("/api")
     public String api() {
-        return "redirect:/api/api.html";
+        return "redirect:/api/debug-all.html";
     }
 
     /**

@@ -1,13 +1,12 @@
 package org.mt.mortnon.web.controller;
 
-import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.sys.service.HelloService;
-import org.mt.mortnon.utils.Asserts;
 import org.mt.mortnon.web.utils.ResultUtil;
 import org.mt.mortnon.web.vo.HelloInput;
 import org.mt.mortnon.web.vo.HelloOutput;
 import org.mt.mortnon.web.vo.MortnonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +27,8 @@ public class HelloController {
     /**
      * 这是我第一个酷毙了的接口
      *
-     * @ignoreParam
+     * @apiNote 这是一个详细描述，很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长
+     * 很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的注释
      * @return hello world
      */
     @GetMapping("/hello")
@@ -43,15 +43,10 @@ public class HelloController {
      * @return 返回
      */
     @PostMapping("/helloman")
-    public MortnonResult<HelloOutput> helloman(@RequestBody HelloInput helloInput) {
+    public MortnonResult<HelloOutput> helloman(@Validated @RequestBody HelloInput helloInput) {
         HelloOutput helloOutput = new HelloOutput();
         helloOutput.setName(helloInput.getName());
         helloOutput.setHello("hello");
-
-        Asserts.assertTrue(helloInput.getAge() > 0, ErrorCodeEnum.USER_ERROR, "年龄错误");
-
-        int x = 1/0;
-
         return ResultUtil.success(helloOutput);
     }
 }

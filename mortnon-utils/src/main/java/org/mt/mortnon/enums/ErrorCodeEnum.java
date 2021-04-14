@@ -23,6 +23,11 @@ public enum ErrorCodeEnum {
     USER_ERROR("A0001", "user end error"),
 
     /**
+     * 参数异常
+     */
+    PARAM_ERROR("A0002", "param error"),
+
+    /**
      * 用户注册错误
      */
     USER_REGISTER_ERROR("A0100", "user register error"),
