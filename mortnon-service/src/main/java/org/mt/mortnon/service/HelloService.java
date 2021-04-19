@@ -2,6 +2,8 @@ package org.mt.mortnon.service;
 
 import org.mt.mortnon.dal.sys.domain.SysUser;
 
+import java.util.List;
+
 /**
  * hello
  *
@@ -22,4 +24,6 @@ public interface HelloService {
      * @return
      */
     SysUser getUser();
+
+    List<SysUser> getUsers();
 }
