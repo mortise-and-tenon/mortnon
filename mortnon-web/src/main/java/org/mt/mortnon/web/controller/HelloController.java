@@ -1,5 +1,6 @@
 package org.mt.mortnon.web.controller;
 
+import org.mt.mortnon.dal.sys.domain.SysUser;
 import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.service.HelloService;
 import org.mt.mortnon.utils.Asserts;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * hello world
@@ -54,6 +57,15 @@ public class HelloController {
         helloOutput.setName(helloInput.getName());
         helloOutput.setHello("hello " + helloService.getUser().getUserName());
         return ResultUtil.success(helloOutput);
+    }
+
+    /**
+     * Hello Mortnon with data list by name convert.
+     * @return
+     */
+    @GetMapping("/hello/all")
+    public MortnonResult<List<SysUser>> helloUsers(){
+        return ResultUtil.success(helloService.getUsers());
     }
 
     /**

@@ -92,6 +92,13 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+  # 实体与表映射配置，以实体定义自动生成表，命名为下划线连接
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
