@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * hello
  *
@@ -34,5 +36,10 @@ public class HelloServiceImpl implements HelloService {
     @Override
     public SysUser getUser() {
         return sysUserMapper.getById(1L);
+    }
+
+    @Override
+    public List<SysUser> getUsers(){
+        return sysUserMapper.getUsers();
     }
 }

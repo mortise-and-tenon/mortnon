@@ -2,12 +2,15 @@ package org.mt.mortnon.dal.sys.domain;
 
 import org.mt.mortnon.dal.base.BaseEntity;
 
+import javax.persistence.Entity;
+
 /**
  * 系统用户
  *
  * @author dongfangzan
  * @date 14.4.21 8:21 下午
  */
+@Entity
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 6159800674264566616L;
 

@@ -1,5 +1,7 @@
 package org.mt.mortnon.dal.base;
 
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,12 +11,14 @@ import java.util.Date;
  * @author dongfangzan
  * @date 14.4.21 8:17 下午
  */
+@MappedSuperclass
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 3581463679936614697L;
 
     /**
      * 主键
      */
+    @Id
     protected Long id;
 
     /**
