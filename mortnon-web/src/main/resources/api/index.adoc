@@ -1,0 +1,255 @@
+= mortnon
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Version |  Update Time  | Status | Author |  Description
+|v2021-04-19 18:06:44|2021-04-19 18:06:44|auto|@zhangsiyuan|Created by smart-doc
+|====================
+
+
+== hello world
+=== Hello Mortnon
+*URL:* /hello
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /hello
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": "jjuom0",
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== Hello Mortnon with validate
+*URL:* /hello
+
+*Type:* POST
+
+*Author:* dongfangzan
+
+*Content-Type:* application/json; charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+*Body-parameters:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Parameter | Type|Description|Required|Since
+|id|string|id|true|-
+|name|string|姓名|true|-
+|age|int32|年龄|true|-
+|====================
+
+*Request-example:*
+----
+curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /hello? --data '{
+	"id": "56",
+	"name": "博超.毛",
+	"age": sdfwefwefoweruoewiur
+}'
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|└─name|string|姓名|-
+|└─hello|string|欢迎语|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": {
+		"name": "博超.毛",
+		"hello": "ywpvmy"
+	},
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 调用异常接口
+*URL:* /exception
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /exception
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": null,
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+== api工具
+=== 跳转到api页面
+*URL:* /api
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /api
+----
+
+*Response-example:*
+----
+string
+----
+
+=== 跳转到swagger页面
+*URL:* /swagger
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /swagger
+----
+
+*Response-example:*
+----
+string
+----
+
+== 错误码列表
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Error code |Description
+|00000|success
+|A0001|user end error
+|A0002|param error
+|A0100|user register error
+|A0101|user did not agree to privacy agreement
+|A0110|username check failed
+|A0111|username already exists
+|B0001|system error
+|====================
+
