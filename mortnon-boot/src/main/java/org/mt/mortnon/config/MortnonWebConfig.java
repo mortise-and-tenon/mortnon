@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.properties.MortnonProperties;
 import org.mt.mortnon.utils.IniUtil;
 import org.mt.mortnon.web.interceptor.ApiLogInterceptor;
+import org.mt.mortnon.web.interceptor.TenantInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -16,8 +17,8 @@ import java.util.Map;
 /**
  * mortnon 配置
  *
- * @date 2021-04-13 21:41:23
  * @author dongfangzan
+ * @date 2021-04-13 21:41:23
  */
 @Configuration
 public class MortnonWebConfig implements WebMvcConfigurer {
@@ -26,7 +27,10 @@ public class MortnonWebConfig implements WebMvcConfigurer {
     private MortnonProperties mortnonProperties;
 
     @Autowired
-    private ApiLogInterceptor interceptor;
+    private ApiLogInterceptor apiLogInterceptor;
+
+    @Autowired
+    private TenantInterceptor tenantInterceptor;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -45,7 +49,11 @@ public class MortnonWebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor);
+        // 日志拦截器
+        registry.addInterceptor(apiLogInterceptor);
+
+        // 租户拦截器
+        registry.addInterceptor(tenantInterceptor);
     }
 
     @Override

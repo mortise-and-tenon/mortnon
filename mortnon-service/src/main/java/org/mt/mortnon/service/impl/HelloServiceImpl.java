@@ -1,13 +1,16 @@
 package org.mt.mortnon.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.extern.slf4j.Slf4j;
+import org.mt.mortnon.constants.MortnonContextHolder;
 import org.mt.mortnon.dal.sys.entity.SysUser;
 import org.mt.mortnon.dal.sys.mapper.SysUserMapper;
 import org.mt.mortnon.service.HelloService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,18 +20,17 @@ import java.util.List;
  * @author dongfangzan
  */
 @Service
-public class HelloServiceImpl implements HelloService {
+@Slf4j
+public class HelloServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements HelloService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloServiceImpl.class);
-
     @Override
     public String hello() {
-        LOGGER.info("测试service层日志打印");
+        log.info("测试service层日志打印");
 
-        LOGGER.error("错误日志测试打印");
+        log.error("错误日志测试打印");
 
         return "Mortnon";
     }
@@ -40,6 +42,23 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public List<SysUser> getUsers(){
+        log.info("当前租户id为{}", MortnonContextHolder.getTenantId());
+
         return sysUserMapper.selectList(null);
+    }
+
+    @Override
+    @Transactional
+    public SysUser saveUser(SysUser sysUser) {
+        log.info("当前租户id为{}", MortnonContextHolder.getTenantId());
+
+        super.save(sysUser);
+        return sysUser;
+    }
+
+    @Override
+    public IPage<SysUser> getByPage() {
+//        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
+        return sysUserMapper.selectByPage(new Page<>());
     }
 }

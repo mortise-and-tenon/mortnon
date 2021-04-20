@@ -1,5 +1,7 @@
 package org.mt.mortnon.web.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.extern.slf4j.Slf4j;
 import org.mt.mortnon.dal.sys.entity.SysUser;
 import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.service.HelloService;
@@ -10,8 +12,6 @@ import org.mt.mortnon.web.vo.HelloInput;
 import org.mt.mortnon.web.vo.HelloOutput;
 import org.mt.mortnon.web.vo.MortnonResult;
 import org.mt.mortnon.web.vo.UserVo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +28,8 @@ import java.util.List;
  * @author dongfangzan
  */
 @RestController
+@Slf4j
 public class HelloController {
-
-    /** 日志 */
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
     private HelloService helloService;
@@ -57,7 +55,9 @@ public class HelloController {
     public MortnonResult<HelloOutput> hello(@Validated @RequestBody HelloInput helloInput) {
         HelloOutput helloOutput = new HelloOutput();
         helloOutput.setName(helloInput.getName());
-        helloOutput.setHello("hello " + helloService.getUser().getUserName());
+        SysUser baseEntity = new SysUser().setUserName(helloInput.getName()).setSex("1").setUserName("123");
+        helloService.saveUser(baseEntity);
+        helloOutput.setId(baseEntity.getId());
         return ResultUtil.success(helloOutput);
     }
 
@@ -73,6 +73,17 @@ public class HelloController {
     }
 
     /**
+     * 分页查询用户信息
+     *
+     * @return
+     */
+    @GetMapping("/hello/page")
+    public MortnonResult<IPage<SysUser>> pageUsers() {
+        IPage<SysUser> byPage = helloService.getByPage();
+        return ResultUtil.success(byPage);
+    }
+
+    /**
      * 调用异常接口
      *
      * @return
@@ -80,8 +91,8 @@ public class HelloController {
     @GetMapping("/exception")
     public MortnonResult<Void> exception() {
 
-        LOGGER.info("调用异常测试日志");
-        LOGGER.error("错误：调用异常测试日志");
+        log.info("调用异常测试日志");
+        log.error("错误：调用异常测试日志");
 
         Asserts.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, "故意做的系统异常");
 

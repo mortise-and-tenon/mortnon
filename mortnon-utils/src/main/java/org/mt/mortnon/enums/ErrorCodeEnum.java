@@ -1,5 +1,6 @@
 package org.mt.mortnon.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -47,7 +48,9 @@ public enum ErrorCodeEnum {
      */
     USERNAME_ALREADY_EXISTS("A0111", "username already exists"),
 
-    /** 系统异常*/
+    /**
+     * 系统异常
+     */
     SYSTEM_ERROR("B0001", "system error"),
     ;
 
@@ -59,6 +62,7 @@ public enum ErrorCodeEnum {
     /**
      * 错误码
      */
+    @JsonValue
     private final String errorCode;
 
     /**

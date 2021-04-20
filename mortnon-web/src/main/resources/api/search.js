@@ -20,6 +20,10 @@ api[0].list.push({
 });
 api[0].list.push({
     order: '4',
+    desc: '分页查询用户信息',
+});
+api[0].list.push({
+    order: '5',
     desc: '调用异常接口',
 });
 api.push({

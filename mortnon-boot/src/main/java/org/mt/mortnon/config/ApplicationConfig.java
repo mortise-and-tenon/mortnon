@@ -1,6 +1,6 @@
 package org.mt.mortnon.config;
 
-import org.mybatis.spring.annotation.MapperScan;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,6 @@ import java.util.TimeZone;
  */
 @Configuration
 @EnableAspectJAutoProxy(exposeProxy = true)
-@MapperScan("org.mt.mortnon.**.mapper")
 public class ApplicationConfig {
     /**
      * 时区配置
@@ -23,5 +22,13 @@ public class ApplicationConfig {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
         return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
+    }
+
+    /**
+     * 配置枚举转string的方法
+     */
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return builder -> builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
     }
 }
