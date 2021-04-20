@@ -1,8 +1,6 @@
 package org.mt.mortnon.web.interceptor;
 
-import org.mt.mortnon.constants.LogName;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -15,9 +13,8 @@ import java.util.Objects;
  * @date 14.4.21 1:38 下午
  */
 @Component
+@Slf4j
 public class ApiLogInterceptor implements HandlerInterceptor {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogName.API_DIGEST);
 
     /** 请求开始时间标识 */
     private static final String LOGGER_SEND_TIME="send_time";
@@ -38,6 +35,6 @@ public class ApiLogInterceptor implements HandlerInterceptor {
         String localIp = request.getLocalAddr();
         String userAgent = request.getHeader("User-Agent");
 
-        LOGGER.info("{},{},{}ms,{},{},{},{},{}",request.getMethod(), request.getRequestURI(), costTime, success, host, ip, localIp, userAgent);
+        log.info("{},{},{}ms,{},{},{},{},{}",request.getMethod(), request.getRequestURI(), costTime, success, host, ip, localIp, userAgent);
     }
 }

@@ -47,13 +47,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
+            <groupId>org.mt</groupId>
+            <artifactId>mortnon-dal</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.mt</groupId>
-            <artifactId>mortnon-dal</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

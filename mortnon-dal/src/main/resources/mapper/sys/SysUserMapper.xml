@@ -4,22 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.mt.mortnon.dal.sys.mapper.SysUserMapper">
 
-	<resultMap type="SysUser" id="SysUserResult">
-		<id     property="id"           column="id"      />
-		<result property="userName"     column="user_name"    />
-		<result property="nickName"     column="nick_name"    />
-		<result property="gmtCreate"    column="gmt_create"  />
-		<result property="gmtModify"    column="gmt_modify"  />
-	</resultMap>
-
-	<sql id="selectUser">
-		select u.id, u.user_name, u.nick_name, u.email, u.gmt_create, u.gmt_modify
-		from sys_user u
-	</sql>
-
-	<select id="getById" parameterType="Long" resultMap="SysUserResult">
-		<include refid="selectUser"/>
-		where u.id = #{userId}
-	</select>
-
+    <select id="selectByPage" resultType="org.mt.mortnon.dal.sys.entity.SysUser">
+        SELECT id,gmt_create,gmt_modify,email,nick_name,sex,user_name,tenant_id FROM sys_user
+    </select>
 </mapper>

@@ -27,7 +27,7 @@ public class BaseEntity implements Serializable {
      * 主键
      */
     @Id
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     protected Long id;
 
     /**

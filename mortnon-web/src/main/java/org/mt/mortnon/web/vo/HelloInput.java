@@ -27,7 +27,7 @@ public class HelloInput {
 
     /**
      * 年龄
-     * @mock sdfwefwefoweruoewiur
+     * @mock 12
      */
     @NotNull
     @Range(min = 0, max = 120, message = "年龄必须在0到120之间")
