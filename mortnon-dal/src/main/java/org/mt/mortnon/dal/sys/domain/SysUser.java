@@ -2,6 +2,7 @@ package org.mt.mortnon.dal.sys.domain;
 
 import org.mt.mortnon.dal.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -14,10 +15,22 @@ import javax.persistence.Entity;
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 6159800674264566616L;
 
+    /**
+     * 用户名
+     */
+    @Column(length = 128)
     private String userName;
 
+    /**
+     * 昵称
+     */
+    @Column(columnDefinition = "varchar(20) COMMENT '昵称'")
     private String nickName;
 
+    /**
+     * email
+     */
+    @Column(length = 128)
     private String email;
 
     public String getUserName() {

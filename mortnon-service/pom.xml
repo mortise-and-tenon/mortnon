@@ -12,7 +12,6 @@
     <artifactId>mortnon-service</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>

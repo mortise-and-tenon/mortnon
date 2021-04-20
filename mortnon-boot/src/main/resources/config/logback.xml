@@ -15,7 +15,7 @@
     </appender>
 
     <!-- 系统日志输出 -->
-    <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="file-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/default.log</file>
         <!-- 循环政策：基于时间创建日志文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -37,8 +37,14 @@
         </filter>
     </appender>
 
+    <appender name="file-info-async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="file-info"/>
+    </appender>
+
     <!-- 错误日志 -->
-    <appender name="file_error" class="ch.qos.logback.core.FileAppender">
+    <appender name="file-error" class="ch.qos.logback.core.FileAppender">
         <file>${log.path}/common-error.log</file>
         <append>true</append>
         <encoder>
@@ -52,6 +58,12 @@
             <!-- 不匹配时的操作：拒绝（不记录） -->
             <onMismatch>DENY</onMismatch>
         </filter>
+    </appender>
+
+    <appender name="file-error-async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <appender-ref ref="file-error"/>
     </appender>
 
     <!-- api日志输出  -->
@@ -68,10 +80,10 @@
         </encoder>
     </appender>
 
-    <!--    -->
-    <appender name="async_log" class="ch.qos.logback.classic.AsyncAppender">
+    <!--  异步日志  -->
+    <appender name="api-digest-appender-async" class="ch.qos.logback.classic.AsyncAppender">
         <discardingThreshold>0</discardingThreshold>
-        <queueSize>250</queueSize>
+        <queueSize>1024</queueSize>
         <appender-ref ref="api-digest-appender"/>
     </appender>
 
@@ -89,6 +101,13 @@
         </encoder>
     </appender>
 
+    <!--  异步日志  -->
+    <appender name="service-digest-appender-async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="service-digest-appender"/>
+    </appender>
+
     <!-- web层摘要日志输出  -->
     <appender name="web-digest-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/web-digest.log</file>
@@ -101,6 +120,13 @@
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
+    </appender>
+
+    <!--  异步日志  -->
+    <appender name="web-digest-appender-async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="web-digest-appender"/>
     </appender>
 
     <!-- web层摘要日志输出  -->
@@ -117,6 +143,13 @@
         </encoder>
     </appender>
 
+    <!--  异步日志  -->
+    <appender name="dal-digest-appender-async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="dal-digest-appender"/>
+    </appender>
+
     <!-- 系统模块日志级别控制  -->
     <logger name="org.mt.mortnon" level="info" />
     <!-- Spring日志级别控制  -->
@@ -128,23 +161,24 @@
 
     <!--系统操作日志-->
     <root level="info">
-        <appender-ref ref="file_info" />
-        <appender-ref ref="file_error" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="file-info-async" />
+        <appender-ref ref="file-error-async" />
     </root>
 
     <logger name="api-digest" level="info">
-        <appender-ref ref="api-digest-appender"/>
+        <appender-ref ref="api-digest-appender-async"/>
     </logger>
 
     <logger name="org.mt.mortnon.web" level="info">
-        <appender-ref ref="web-digest-appender"/>
+        <appender-ref ref="web-digest-appender-async"/>
     </logger>
 
     <logger name="org.mt.mortnon.service" level="info">
-        <appender-ref ref="service-digest-appender"/>
+        <appender-ref ref="service-digest-appender-async"/>
     </logger>
 
     <logger name="org.mt.mortnon.dal" level="info">
-        <appender-ref ref="dal-digest-appender"/>
+        <appender-ref ref="dal-digest-appender-async"/>
     </logger>
 </configuration>

@@ -42,7 +42,7 @@ public class HelloController {
      */
     @GetMapping("/hello")
     public MortnonResult<String> helloWorld() {
-        return ResultUtil.success("Hello " + helloService.hello() + "!  ");
+        return ResultUtil.success("Hello " + helloService.hello() + "!");
     }
 
     /**

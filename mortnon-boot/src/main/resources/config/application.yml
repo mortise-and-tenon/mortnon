@@ -29,9 +29,19 @@ server:
 mybatis:
   type-aliases-package: org.mt.mortnon.**.domain
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  config-location: classpath:mybatis/mybatis-config.xml
+  config-location: classpath:config/mybatis/mybatis-config.xml
+
+logging:
+  config: classpath:config/logback.xml
 
 spring:
+  # 激活环境，local:本机环境/dev：测试机/test：集成测试环境/prod：生产环境，在主pom里增加或修改
+  profiles:
+    active: @profileActive@
+  # banner
+  banner:
+    charset: utf-8
+    location: classpath:config/banner.txt
   # 数据源配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
