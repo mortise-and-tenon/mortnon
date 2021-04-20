@@ -1,5 +1,6 @@
 package org.mt.mortnon.web.interceptor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.exceptions.MortnonBaseException;
 import org.mt.mortnon.web.utils.ResultUtil;
@@ -42,18 +43,21 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = Exception.class)
     public <T> MortnonResult<T> exceptionHandler(HttpServletRequest request, Exception e) {
-        // 打印错误异常
-        logger.error(e.getMessage());
-
+        // 将错误信息保存到上下文
         request.setAttribute(EXCEPTION_TAG, e);
+
+        // 打印错误异常
+        logger.error("error:", e);
 
         // 封装错误码
         ErrorCodeEnum errorCodeEnum = ErrorCodeEnum.SYSTEM_ERROR;
-
         if (e instanceof MortnonBaseException) {
             errorCodeEnum = ((MortnonBaseException) e).getErrorCodeEnum();
         }
-        return ResultUtil.fail(null, errorCodeEnum, errorCodeEnum.getDescription());
+
+        // 返回错误消息
+        String msg = StringUtils.isBlank(e.getMessage()) ? errorCodeEnum.getDescription() : e.getMessage();
+        return ResultUtil.fail(null, errorCodeEnum, msg);
     }
 
     /**

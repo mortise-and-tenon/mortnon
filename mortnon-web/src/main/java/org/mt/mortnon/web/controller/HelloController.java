@@ -1,13 +1,15 @@
 package org.mt.mortnon.web.controller;
 
-import org.mt.mortnon.dal.sys.domain.SysUser;
+import org.mt.mortnon.dal.sys.entity.SysUser;
 import org.mt.mortnon.enums.ErrorCodeEnum;
 import org.mt.mortnon.service.HelloService;
 import org.mt.mortnon.utils.Asserts;
+import org.mt.mortnon.utils.ModelConvertor;
 import org.mt.mortnon.web.utils.ResultUtil;
 import org.mt.mortnon.web.vo.HelloInput;
 import org.mt.mortnon.web.vo.HelloOutput;
 import org.mt.mortnon.web.vo.MortnonResult;
+import org.mt.mortnon.web.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +66,10 @@ public class HelloController {
      * @return
      */
     @GetMapping("/hello/all")
-    public MortnonResult<List<SysUser>> helloUsers(){
-        return ResultUtil.success(helloService.getUsers());
+    public MortnonResult<List<UserVo>> helloUsers(){
+        List<SysUser> users = helloService.getUsers();
+
+        return ResultUtil.success(ModelConvertor.convert(users, UserVo.class));
     }
 
     /**

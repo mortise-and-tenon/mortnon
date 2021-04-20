@@ -37,5 +37,15 @@
             <groupId>org.mt</groupId>
             <artifactId>mortnon-utils</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+        </dependency>
     </dependencies>
 </project>

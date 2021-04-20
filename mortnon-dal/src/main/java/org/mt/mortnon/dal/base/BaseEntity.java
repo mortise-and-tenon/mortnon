@@ -1,5 +1,11 @@
 package org.mt.mortnon.dal.base;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
@@ -12,6 +18,8 @@ import java.util.Date;
  * @date 14.4.21 8:17 下午
  */
 @MappedSuperclass
+@Data
+@Accessors(chain = true)
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 3581463679936614697L;
 
@@ -19,39 +27,24 @@ public class BaseEntity implements Serializable {
      * 主键
      */
     @Id
+    @TableId(type = IdType.AUTO)
     protected Long id;
 
     /**
      * 创建时间
      */
+    @Column(nullable = false, columnDefinition = "timestamp(6) COMMENT '创建时间' DEFAULT CURRENT_TIMESTAMP(6)")
     protected Date gmtCreate;
 
     /**
      * 修改时间
      */
+    @Column(nullable = false, columnDefinition = "timestamp(6) COMMENT '修改时间' DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)")
     protected Date gmtModify;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Date getGmtModify() {
-        return gmtModify;
-    }
-
-    public void setGmtModify(Date gmtModify) {
-        this.gmtModify = gmtModify;
-    }
+    /**
+     * 租户id
+     */
+    @Column(name = "tenant_id", nullable = false, columnDefinition = "varchar(20) COMMENT '租户id'")
+    protected String tenantId;
 }

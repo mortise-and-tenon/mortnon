@@ -1,5 +1,8 @@
 package org.mt.mortnon.web.vo;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +11,8 @@ import java.io.Serializable;
  * @author dongfangzan
  * @date 14.4.21 10:27 上午
  */
+@Data
+@Accessors(chain = true)
 public class MortnonResult<T> implements Serializable {
 
     /**
@@ -38,36 +43,4 @@ public class MortnonResult<T> implements Serializable {
      * @mock true
      */
     private boolean success;
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 }

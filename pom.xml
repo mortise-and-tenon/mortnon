@@ -23,7 +23,8 @@
         <ini4j.version>0.5.4</ini4j.version>
         <guava.version>28.2-jre</guava.version>
         <druid.version>1.2.4</druid.version>
-        <pagehelper.boot.version>1.3.0</pagehelper.boot.version>
+        <lombok.version>1.18.12</lombok.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <assembly.name>mortnon-${project.version}</assembly.name>
 
 
@@ -121,11 +122,16 @@
                 <version>${druid.version}</version>
             </dependency>
 
-            <!-- pagehelper 分页插件 -->
             <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.boot.version}</version>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
 
         </dependencies>
