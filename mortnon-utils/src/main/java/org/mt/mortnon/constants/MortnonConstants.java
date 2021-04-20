@@ -9,5 +9,6 @@ public class MortnonConstants {
     /** 租户id */
     public static final String TENANT_ID = "tenant_id";
 
+    /** 默认租户名称 */
     public static final String DEFAULT_TENANT_ID = "mortnon";
 }

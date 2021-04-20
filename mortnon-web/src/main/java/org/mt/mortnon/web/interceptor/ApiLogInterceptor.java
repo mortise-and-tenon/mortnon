@@ -1,5 +1,6 @@
 package org.mt.mortnon.web.interceptor;
 
+import io.github.ljwlgl.util.NetworkUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,8 +17,10 @@ import java.util.Objects;
 @Slf4j
 public class ApiLogInterceptor implements HandlerInterceptor {
 
-    /** 请求开始时间标识 */
-    private static final String LOGGER_SEND_TIME="send_time";
+    /**
+     * 请求开始时间标识
+     */
+    private static final String LOGGER_SEND_TIME = "send_time";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -29,12 +32,13 @@ public class ApiLogInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         long costTime = System.currentTimeMillis() - (long) request.getAttribute(LOGGER_SEND_TIME);
-        String success = Objects.nonNull(request.getAttribute(GlobalExceptionHandler.EXCEPTION_TAG))? "F" : "T";
+        String success = Objects.nonNull(request.getAttribute(GlobalExceptionHandler.EXCEPTION_TAG)) ? "F" : "T";
         String host = request.getRemoteHost();
         String ip = request.getRemoteAddr();
-        String localIp = request.getLocalAddr();
+        String localIp = NetworkUtil.getLocalHostAddress();
+        String localhost = NetworkUtil.getLocalHostName();
         String userAgent = request.getHeader("User-Agent");
 
-        log.info("{},{},{}ms,{},{},{},{},{}",request.getMethod(), request.getRequestURI(), costTime, success, host, ip, localIp, userAgent);
+        log.info("{},{},{}ms,{},{},{},{},{},{}", request.getMethod(), request.getRequestURI(), costTime, success, host, ip, localIp, localhost, userAgent);
     }
 }
