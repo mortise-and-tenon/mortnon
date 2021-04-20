@@ -1,6 +1,6 @@
 package org.mt.mortnon.service.impl;
 
-import org.mt.mortnon.dal.sys.domain.SysUser;
+import org.mt.mortnon.dal.sys.entity.SysUser;
 import org.mt.mortnon.dal.sys.mapper.SysUserMapper;
 import org.mt.mortnon.service.HelloService;
 import org.slf4j.Logger;
@@ -35,11 +35,11 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public SysUser getUser() {
-        return sysUserMapper.getById(1L);
+        return sysUserMapper.selectById(1);
     }
 
     @Override
     public List<SysUser> getUsers(){
-        return sysUserMapper.getUsers();
+        return sysUserMapper.selectList(null);
     }
 }

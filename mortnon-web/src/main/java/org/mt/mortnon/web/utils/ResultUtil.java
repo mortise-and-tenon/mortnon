@@ -20,12 +20,8 @@ public class ResultUtil {
      * @return 结果
      */
     public static <T> MortnonResult<T> success(T t) {
-        MortnonResult<T> mortnonResult = new MortnonResult<>();
-        mortnonResult.setSuccess(true);
-        mortnonResult.setErrorCode(ErrorCodeEnum.SUCCESS.getErrorCode());
-        mortnonResult.setMessage(ErrorCodeEnum.SUCCESS.getDescription());
+        MortnonResult<T> mortnonResult = success();
         mortnonResult.setData(t);
-
         return mortnonResult;
     }
 
@@ -36,23 +32,26 @@ public class ResultUtil {
      * @return
      */
     public static <T> MortnonResult<T> success() {
-        MortnonResult<T> mortnonResult = new MortnonResult<>();
-        mortnonResult.setSuccess(true);
-        mortnonResult.setErrorCode(ErrorCodeEnum.SUCCESS.getErrorCode());
-        mortnonResult.setMessage(ErrorCodeEnum.SUCCESS.getDescription());
-
-        return mortnonResult;
+        return new MortnonResult<T>()
+                .setSuccess(true)
+                .setErrorCode(ErrorCodeEnum.SUCCESS.getErrorCode())
+                .setMessage(ErrorCodeEnum.SUCCESS.getDescription());
     }
 
+    /**
+     * 返回失败
+     *
+     * @param t
+     * @param errorCodeEnum
+     * @param msg
+     * @param <T>
+     * @return
+     */
     public static <T> MortnonResult<T> fail(T t, ErrorCodeEnum errorCodeEnum, String msg) {
-        MortnonResult<T> mortnonResult = new MortnonResult<>();
-        mortnonResult.setSuccess(false);
-        mortnonResult.setErrorCode(errorCodeEnum.getErrorCode());
-        mortnonResult.setMessage(msg);
-        if (StringUtils.isBlank(msg)) {
-            mortnonResult.setMessage(errorCodeEnum.getDescription());
-        }
-        mortnonResult.setData(t);
-        return mortnonResult;
+        return new MortnonResult<T>()
+                .setSuccess(false)
+                .setErrorCode(errorCodeEnum.getErrorCode())
+                .setMessage(StringUtils.isBlank(msg) ? errorCodeEnum.getDescription() : msg)
+                .setData(t);
     }
 }

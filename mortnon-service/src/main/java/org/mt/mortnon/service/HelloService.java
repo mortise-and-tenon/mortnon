@@ -1,6 +1,6 @@
 package org.mt.mortnon.service;
 
-import org.mt.mortnon.dal.sys.domain.SysUser;
+import org.mt.mortnon.dal.sys.entity.SysUser;
 
 import java.util.List;
 
