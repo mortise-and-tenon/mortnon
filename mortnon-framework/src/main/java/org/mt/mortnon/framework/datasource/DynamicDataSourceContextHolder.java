@@ -1,4 +1,4 @@
-package org.mt.mortnon.datasource;
+package org.mt.mortnon.framework.datasource;
 
 import lombok.extern.slf4j.Slf4j;
 

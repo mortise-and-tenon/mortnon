@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.mt.mortnon.utils;
+package org.mt.mortnon.framework.utils;
 
 import org.ini4j.Config;
 import org.ini4j.Ini;

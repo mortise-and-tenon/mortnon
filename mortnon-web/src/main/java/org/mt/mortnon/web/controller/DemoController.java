@@ -1,16 +1,14 @@
 package org.mt.mortnon.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.utils.AssertsUtil;
-import org.mt.mortnon.utils.ResultUtil;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.utils.AssertsUtil;
+import org.mt.mortnon.framework.utils.I18nUtil;
+import org.mt.mortnon.framework.utils.ResultUtil;
+import org.mt.mortnon.framework.vo.MortnonResult;
 import org.mt.mortnon.web.vo.DemoInput;
-import org.mt.mortnon.vo.MortnonResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Demo
@@ -19,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 22.4.21 11:07 上午
  */
 @Slf4j
-@RestController("/demo")
+@RestController()
+@RequestMapping("/demo")
 public class DemoController {
 
     /**
@@ -56,7 +55,6 @@ public class DemoController {
      */
     @GetMapping("/error")
     public MortnonResult<Void> error() {
-
         // 打印在web-digest.log文件中
         log.info("调用异常测试日志");
 
@@ -64,7 +62,7 @@ public class DemoController {
         log.error("错误：调用异常测试日志");
 
         // 打印在common-error.log以及web-digest.log文件中，阻断流程，返回下列
-        AssertsUtil.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, "故意做的系统异常");
+        AssertsUtil.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, I18nUtil.getMessage(ErrorCodeEnum.SYSTEM_ERROR.getErrorCode()));
 
         return ResultUtil.success();
     }

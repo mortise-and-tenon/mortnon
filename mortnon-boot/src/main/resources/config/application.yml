@@ -57,6 +57,8 @@ logging:
   config: classpath:config/logback.xml
 
 spring:
+  messages:
+    basename: i18n/error_code, i18n/login
   # 激活环境，local:本机环境/dev：测试机/test：集成测试环境/prod：生产环境，在主pom里增加或修改
   profiles:
     active: @profileActive@
@@ -70,9 +72,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       master:
-        url: jdbc:mysql://localhost:3306/mortnon?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-        username: root
-        password: 123456
+        url:
+        username:
+        password:
       slave:
         enable: false
         url:

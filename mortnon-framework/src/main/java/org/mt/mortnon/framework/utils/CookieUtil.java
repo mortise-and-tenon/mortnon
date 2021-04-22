@@ -1,4 +1,4 @@
-package org.mt.mortnon.utils;
+package org.mt.mortnon.framework.utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

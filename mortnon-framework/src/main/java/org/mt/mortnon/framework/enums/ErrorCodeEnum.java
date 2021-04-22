@@ -1,4 +1,4 @@
-package org.mt.mortnon.enums;
+package org.mt.mortnon.framework.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.apache.commons.lang3.StringUtils;
@@ -31,7 +31,7 @@ public enum ErrorCodeEnum {
     /**
      * 用户注册错误
      */
-    USER_REGISTER_ERROR("A0100", "user register error"),
+    USER_REGISTER_ERROR("B0001", "user register error"),
 
     /**
      * 用户未统一隐私协议
