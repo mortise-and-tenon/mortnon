@@ -1,4 +1,4 @@
-package org.mt.mortnon.utils;
+package org.mt.mortnon.framework.utils;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.aop.framework.AopContext;

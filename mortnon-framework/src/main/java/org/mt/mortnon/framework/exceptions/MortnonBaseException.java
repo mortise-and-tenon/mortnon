@@ -1,10 +1,10 @@
-package org.mt.mortnon.exceptions;
+package org.mt.mortnon.framework.exceptions;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.StringUtils;
-import org.mt.mortnon.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 
 /**
  * @author dongfangzan

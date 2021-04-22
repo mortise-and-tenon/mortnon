@@ -1,11 +1,11 @@
 package org.mt.mortnon.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.utils.AssertsUtil;
-import org.mt.mortnon.utils.ResultUtil;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.utils.AssertsUtil;
+import org.mt.mortnon.framework.utils.ResultUtil;
 import org.mt.mortnon.web.vo.DemoInput;
-import org.mt.mortnon.vo.MortnonResult;
+import org.mt.mortnon.framework.vo.MortnonResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
