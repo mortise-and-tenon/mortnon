@@ -75,13 +75,6 @@
                 <version>${mortnon.version}</version>
             </dependency>
 
-            <!-- 业务层 -->
-            <dependency>
-                <groupId>org.mt</groupId>
-                <artifactId>mortnon-biz</artifactId>
-                <version>${mortnon.version}</version>
-            </dependency>
-
             <!-- 数据接入层 -->
             <dependency>
                 <groupId>org.mt</groupId>
@@ -141,7 +134,6 @@
         <module>mortnon-framework</module>
         <module>mortnon-dal</module>
         <module>mortnon-service</module>
-        <module>mortnon-biz</module>
         <module>mortnon-web</module>
         <module>mortnon-boot</module>
         <module>mortnon-assembly</module>
