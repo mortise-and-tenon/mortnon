@@ -42,26 +42,28 @@ MortNon是我们推出的一款后台框架，在看了市面上那么多优秀�
 - [x] slf4j+logback日志打印，日志分区分打印，包含api-digest(用于业务监控)，service-digest(服务摘要)，web-digest(web层摘要)，dal-digest(数据层摘要)，default(全量日志)，common-error(错误日志，用于错误监控) 2021-04-14
     - [ ] 演示和说明文档
     - [ ] 如何与grafana集成，形成一套合理的监控方案
+- [x] 基于领域模型设计的代码组织结构 2021-04-13
 - [x] 支持阿里巴巴Java开发手册中的错误码  2021-04-14
 - [x] 基于Java validator的接口参数验证能力 2021-04-14
-- [x] 基于领域模型设计的代码组织结构 2021-04-13
-- [x] DO与领域模型，领域模型与展示模型之间的转换方案
-    - [ ] 说明文档
 - [x] 接入mybatis 2021-04-14
     - [x] 配置多数据源（可选）2021-04-14
+- [x] 国际化方案
+    - [ ] 演示和说明文档
+- [x] 多租户 2021-04-21
+- [x] DO与领域模型，领域模型与展示模型之间的转换方案 2021-04-21
+  - [ ] 说明文档
+- [x] 区分环境的配置代码化能力application.yml 2021-04-21
+- [x] 项目创建脚本 2021-04-22
+  - [ ] 演示和说明文档
 - [ ] 数据库代码化的实现，使用[flyrafter](https://gitee.com/mortise-and-tenon/flyrafter)
     - [ ] 演示和说明文档
-- [x] 区分环境的配置代码化能力application.yml
 - [ ] 打包和部署脚本，linux和windows双平台
     - [ ] 演示和说明文档
 - [ ] 启动加载说明文档  
 - [ ] docker容器化部署
 - [ ] docker-compose部署方案
-- [ ] 项目创建脚本
 - [ ] idea插件
 - [ ] 集成vue-admin前端
-- [ ] 多租户方案
-- [ ] 国际化方案
 - [ ] 用户登录
 - [ ] 用户管理
 - [ ] 操作日志
@@ -77,35 +79,3 @@ MortNon是我们推出的一款后台框架，在看了市面上那么多优秀�
 - [ ] 在线用户
 - [ ] 服务监控
 - [ ] 在线构建
-
-#### 软件架构
-
-软件架构说明
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-#### 特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5. Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
