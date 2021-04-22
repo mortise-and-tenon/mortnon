@@ -5,10 +5,8 @@ import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 import org.mt.mortnon.framework.utils.AssertsUtil;
 import org.mt.mortnon.framework.utils.I18nUtil;
 import org.mt.mortnon.framework.utils.ResultUtil;
-import org.mt.mortnon.web.vo.DemoInput;
 import org.mt.mortnon.framework.vo.MortnonResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
+import org.mt.mortnon.web.vo.DemoInput;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 @RequestMapping("/demo")
 public class DemoController {
-
-    @Autowired
-    private MessageSource messageSource;
 
     /**
      * hello world
