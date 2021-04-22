@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mortnon-utils</artifactId>
+    <artifactId>mortnon-framework</artifactId>
 
     <dependencies>
         <!-- ini格式处理 -->

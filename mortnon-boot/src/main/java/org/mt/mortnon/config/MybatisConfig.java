@@ -8,14 +8,18 @@ import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerIntercept
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.StringValue;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.constants.MortnonContextHolder;
 import org.mt.mortnon.properties.MortnonProperties;
+import org.mt.mortnon.utils.IniUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.util.Map;
 
 /**
  * mybatis 配置
@@ -28,6 +32,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("org.mt.mortnon.**.mapper")
 public class MybatisConfig {
 
+    /** 基本配置 */
     @Autowired
     private MortnonProperties mortnonProperties;
 
@@ -41,7 +46,6 @@ public class MybatisConfig {
      * mybatis-plus 分页插件
      */
     @Bean
-    @ConfigurationProperties
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 

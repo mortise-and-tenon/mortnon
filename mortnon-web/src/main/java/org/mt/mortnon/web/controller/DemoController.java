@@ -2,7 +2,7 @@ package org.mt.mortnon.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.utils.Asserts;
+import org.mt.mortnon.utils.AssertsUtil;
 import org.mt.mortnon.utils.ResultUtil;
 import org.mt.mortnon.web.vo.DemoInput;
 import org.mt.mortnon.vo.MortnonResult;
@@ -64,7 +64,7 @@ public class DemoController {
         log.error("错误：调用异常测试日志");
 
         // 打印在common-error.log以及web-digest.log文件中，阻断流程，返回下列
-        Asserts.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, "故意做的系统异常");
+        AssertsUtil.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, "故意做的系统异常");
 
         return ResultUtil.success();
     }

@@ -50,7 +50,7 @@
             <!-- 通用工具 -->
             <dependency>
                 <groupId>org.mt</groupId>
-                <artifactId>mortnon-utils</artifactId>
+                <artifactId>mortnon-framework</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
@@ -138,7 +138,7 @@
     </dependencyManagement>
 
     <modules>
-        <module>mortnon-utils</module>
+        <module>mortnon-framework</module>
         <module>mortnon-dal</module>
         <module>mortnon-service</module>
         <module>mortnon-biz</module>

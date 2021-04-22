@@ -9,9 +9,6 @@ public class MortnonConstants {
     /** 租户id */
     public static final String TENANT_ID = "tenant_id";
 
-    /** 默认租户名称 */
-    public static final String DEFAULT_TENANT_ID = "mortnon";
-
     /** 请求开始时间标识 */
     public static final String LOGGER_SEND_TIME = "send_time";
 

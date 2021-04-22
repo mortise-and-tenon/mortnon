@@ -1,6 +1,9 @@
 package org.mt.mortnon.properties;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
+import org.mt.mortnon.constants.CharConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +19,9 @@ import java.util.List;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "mortnon")
 public class MortnonProperties {
     /** 静态资源访问控制器 */
+    @Value("${mortnon.resource-handlers}")
     private String resourceHandlers;
 
     /** 开启多租户 */
@@ -35,5 +38,18 @@ public class MortnonProperties {
 
     /** 租户黑名单 */
     @Value("${mortnon.multi-tenant.tenant-black-list}")
-    private List<String> tenantBlackList;
+    private String tenantBlackList;
+
+    /**
+     * 获取租户黑名单
+     *
+     * @return 租户黑名单表
+     */
+    public List<String> getTenantBlackList() {
+        if (StringUtils.isBlank(tenantBlackList)) {
+            return null;
+        }
+
+        return Lists.newArrayList(tenantBlackList.split(CharConstants.COMMA));
+    }
 }

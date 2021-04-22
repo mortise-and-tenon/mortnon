@@ -1,13 +1,13 @@
 mortnon:
   multi-tenant:
     # 开启多租户
-    enable-multi-tenant: true
+    enable-multi-tenant: false
     # 默认租户
     default-tenant-id: mortnon
     # 租户列名
     tenant-id-column: tenant_id
-    # 租户黑名单,名单中的表忽略租户信息
-    tenant-black-list: |
+    # 租户黑名单,名单中的表忽略租户信息,用逗号分割
+    tenant-black-list: sys_user,sys_role
   # 静态文件访问地址
   resource-handlers: |
     /api/**=classpath:/api/

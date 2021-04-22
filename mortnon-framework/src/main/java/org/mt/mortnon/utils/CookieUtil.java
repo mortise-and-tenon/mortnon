@@ -15,10 +15,10 @@ public class CookieUtil {
     /**
      * 添加cookie
      *
-     * @param response
-     * @param name
-     * @param value
-     * @param maxAge
+     * @param response 响应
+     * @param name      cookie key
+     * @param value    cookie value
+     * @param maxAge   超时时间
      */
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
@@ -32,8 +32,8 @@ public class CookieUtil {
     /**
      * 删除cookie
      *
-     * @param response
-     * @param name
+     * @param response 响应
+     * @param name     cookie name
      */
     public static void removeCookie(HttpServletResponse response, String name) {
         Cookie uid = new Cookie(name, null);
@@ -45,10 +45,11 @@ public class CookieUtil {
     /**
      * 获取cookie值
      *
-     * @param request
-     * @return
+     * @param request 请求
+     * @param name    cookie name
+     * @return        cookie value
      */
-    public static String getCookieValue(HttpServletRequest request, String key) {
+    public static String getCookieValue(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
         // 这里一定要判空，不然可能导致大量报错影响页面性能
         if (null == cookies) {
@@ -56,7 +57,7 @@ public class CookieUtil {
         }
 
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(key)) {
+            if (cookie.getName().equals(name)) {
                 return cookie.getValue();
             }
         }

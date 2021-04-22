@@ -9,7 +9,7 @@ import org.mt.mortnon.exceptions.MortnonBaseException;
  * @author dongfangzan
  * @date 14.4.21 10:44 上午
  */
-public class Asserts {
+public class AssertsUtil {
 
     /**
      * 断言为真
@@ -25,6 +25,12 @@ public class Asserts {
     }
 
 
+    /**
+     * 根据错误码抛出异常
+     *
+     * @param errorCodeEnum 错误码
+     * @param msg           错误信息
+     */
     public static void throwException(ErrorCodeEnum errorCodeEnum, String msg) {
         throw new MortnonBaseException(errorCodeEnum, msg);
     }

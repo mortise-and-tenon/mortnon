@@ -28,8 +28,8 @@ public class ResultUtil {
     /**
      * 返回成功
      *
-     * @param <T>
-     * @return
+     * @param <T> 信息类型
+     * @return    结果
      */
     public static <T> MortnonResult<T> success() {
         return new MortnonResult<T>()
@@ -41,11 +41,11 @@ public class ResultUtil {
     /**
      * 返回失败
      *
-     * @param t
-     * @param errorCodeEnum
-     * @param msg
-     * @param <T>
-     * @return
+     * @param t             错误信息
+     * @param errorCodeEnum 错误码
+     * @param msg           错误信息
+     * @param <T>           错误信息类型
+     * @return              结果
      */
     public static <T> MortnonResult<T> fail(T t, ErrorCodeEnum errorCodeEnum, String msg) {
         return new MortnonResult<T>()

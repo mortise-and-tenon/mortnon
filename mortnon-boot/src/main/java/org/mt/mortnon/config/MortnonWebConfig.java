@@ -52,8 +52,10 @@ public class MortnonWebConfig implements WebMvcConfigurer {
         // 日志拦截器
         registry.addInterceptor(apiLogInterceptor);
 
-        // 租户拦截器
-        registry.addInterceptor(tenantInterceptor);
+        if (mortnonProperties.isEnableMultiTenant()) {
+            // 租户拦截器
+            registry.addInterceptor(tenantInterceptor);
+        }
     }
 
     @Override

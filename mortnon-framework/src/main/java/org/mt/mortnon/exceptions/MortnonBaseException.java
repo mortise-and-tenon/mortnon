@@ -1,5 +1,8 @@
 package org.mt.mortnon.exceptions;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.enums.ErrorCodeEnum;
 
@@ -7,11 +10,13 @@ import org.mt.mortnon.enums.ErrorCodeEnum;
  * @author dongfangzan
  * @date 14.4.21 10:50 上午
  */
+@Data
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
 public class MortnonBaseException extends RuntimeException{
 
     /**
      * uid
-     * @ignore
      */
     private static final long serialVersionUID = 1992908203816666196L;
 
@@ -55,29 +60,4 @@ public class MortnonBaseException extends RuntimeException{
 
     /** 错误信息 */
     private String message;
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public ErrorCodeEnum getErrorCodeEnum() {
-        return errorCodeEnum;
-    }
-
-    public void setErrorCodeEnum(ErrorCodeEnum errorCodeEnum) {
-        this.errorCodeEnum = errorCodeEnum;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
