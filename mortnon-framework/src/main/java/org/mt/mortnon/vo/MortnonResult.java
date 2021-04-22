@@ -17,7 +17,6 @@ public class MortnonResult<T> implements Serializable {
 
     /**
      * uid
-     * @ignore
      */
     private static final long serialVersionUID = -853188663210091249L;
 

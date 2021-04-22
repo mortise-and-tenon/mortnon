@@ -32,16 +32,16 @@ public class DruidProperties {
     @Value("${spring.datasource.druid.max-evictable-idle-time-millis}")
     private int maxEvictableIdleTimeMillis;
 
-    @Value("${spring.datasource.druid.validationQuery}")
+    @Value("${spring.datasource.druid.validation-query}")
     private String validationQuery;
 
-    @Value("${spring.datasource.druid.testWhileIdle}")
+    @Value("${spring.datasource.druid.test-while-idle}")
     private boolean testWhileIdle;
 
-    @Value("${spring.datasource.druid.testOnBorrow}")
+    @Value("${spring.datasource.druid.test-on-borrow}")
     private boolean testOnBorrow;
 
-    @Value("${spring.datasource.druid.testOnReturn}")
+    @Value("${spring.datasource.druid.test-on-return}")
     private boolean testOnReturn;
 
     public DruidDataSource dataSource(DruidDataSource datasource) {

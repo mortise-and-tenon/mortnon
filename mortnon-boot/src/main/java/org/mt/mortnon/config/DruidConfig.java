@@ -28,6 +28,13 @@ import java.util.Map;
  */
 @Configuration
 public class DruidConfig {
+
+    /**
+     * 主数据源
+     *
+     * @param druidProperties
+     * @return
+     */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperties druidProperties) {
@@ -35,6 +42,12 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 从数据源
+     *
+     * @param druidProperties
+     * @return
+     */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.slave")
     @ConditionalOnProperty(prefix = "spring.datasource.druid.slave", name = "enabled", havingValue = "true")
@@ -43,6 +56,12 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 动态数据源
+     *
+     * @param masterDataSource
+     * @return
+     */
     @Bean(name = "dynamicDataSource")
     @Primary
     public DynamicDataSource dataSource(DataSource masterDataSource) {
@@ -72,7 +91,7 @@ public class DruidConfig {
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
-    @ConditionalOnProperty(name = "spring.datasource.druid.statViewServlet.enabled", havingValue = "true")
+    @ConditionalOnProperty(name = "spring.datasource.druid.stat-view-servlet.enabled", havingValue = "true")
     public FilterRegistrationBean removeDruidFilterRegistrationBean(DruidStatProperties properties) {
         // 获取web监控页面的参数
         DruidStatProperties.StatViewServlet config = properties.getStatViewServlet();

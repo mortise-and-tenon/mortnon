@@ -35,7 +35,7 @@ mybatis-plus:
   # 启动时是否检查MyBatis XML文件是否存在
   check-config-location: true
   # 支持统配符 * 或者 ; 分割
-  typeEnumsPackage: org.mt.mortnon.*.enums
+  type-aliases-package: org.mt.mortnon.*.enums
   # MyBatis原生配置
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -90,13 +90,13 @@ spring:
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
       max-evictable-idle-time-millis: 900000
-      validationQuery: SELECT 1 FROM DUAL
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      webStatFilter:
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      webStat-filter:
         enabled: true
-      statViewServlet:
+      stat-view-servlet:
         enabled: true
         # 设置白名单，不填则允许所有访问
         allow:
