@@ -7,7 +7,7 @@ import com.alibaba.druid.util.Utils;
 import org.mt.mortnon.datasource.DynamicDataSource;
 import org.mt.mortnon.enums.DataSourceType;
 import org.mt.mortnon.properties.DruidProperties;
-import org.mt.mortnon.utils.spring.SpringUtils;
+import org.mt.mortnon.utils.SpringUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -28,6 +28,13 @@ import java.util.Map;
  */
 @Configuration
 public class DruidConfig {
+
+    /**
+     * 主数据源
+     *
+     * @param druidProperties
+     * @return
+     */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.master")
     public DataSource masterDataSource(DruidProperties druidProperties) {
@@ -35,6 +42,12 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 从数据源
+     *
+     * @param druidProperties
+     * @return
+     */
     @Bean
     @ConfigurationProperties("spring.datasource.druid.slave")
     @ConditionalOnProperty(prefix = "spring.datasource.druid.slave", name = "enabled", havingValue = "true")
@@ -43,6 +56,12 @@ public class DruidConfig {
         return druidProperties.dataSource(dataSource);
     }
 
+    /**
+     * 动态数据源
+     *
+     * @param masterDataSource
+     * @return
+     */
     @Bean(name = "dynamicDataSource")
     @Primary
     public DynamicDataSource dataSource(DataSource masterDataSource) {
@@ -61,7 +80,7 @@ public class DruidConfig {
      */
     public void setDataSource(Map<Object, Object> targetDataSources, String sourceName, String beanName) {
         try {
-            DataSource dataSource = SpringUtils.getBean(beanName);
+            DataSource dataSource = SpringUtil.getBean(beanName);
             targetDataSources.put(sourceName, dataSource);
         } catch (Exception e) {
         }
@@ -72,7 +91,7 @@ public class DruidConfig {
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
-    @ConditionalOnProperty(name = "spring.datasource.druid.statViewServlet.enabled", havingValue = "true")
+    @ConditionalOnProperty(name = "spring.datasource.druid.stat-view-servlet.enabled", havingValue = "true")
     public FilterRegistrationBean removeDruidFilterRegistrationBean(DruidStatProperties properties) {
         // 获取web监控页面的参数
         DruidStatProperties.StatViewServlet config = properties.getStatViewServlet();

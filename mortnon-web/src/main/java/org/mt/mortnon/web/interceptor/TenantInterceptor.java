@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.mt.mortnon.constants.MortnonConstants;
 import org.mt.mortnon.constants.MortnonContextHolder;
+import org.mt.mortnon.properties.MortnonProperties;
 import org.mt.mortnon.utils.CookieUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -18,8 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class TenantInterceptor implements HandlerInterceptor {
+
+    @Autowired
+    private MortnonProperties mortnonProperties;
+
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response,
+                             Object handler) throws Exception {
         setTenantId(request);
 
         return true;
@@ -32,7 +40,7 @@ public class TenantInterceptor implements HandlerInterceptor {
      */
     private void setTenantId(HttpServletRequest request) {
         // 什么都没有取默认值
-        String tenant = MortnonConstants.DEFAULT_TENANT_ID;
+        String tenant = mortnonProperties.getDefaultTenantId();
 
         // 在cookie中取
         String cookieTenant = CookieUtil.getCookieValue(request, MortnonConstants.TENANT_ID);
@@ -51,7 +59,10 @@ public class TenantInterceptor implements HandlerInterceptor {
 
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request,
+                                HttpServletResponse response,
+                                Object handler,
+                                Exception ex) throws Exception {
         // 清除租户
         MortnonContextHolder.clear();
     }

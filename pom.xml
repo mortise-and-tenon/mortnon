@@ -50,7 +50,7 @@
             <!-- 通用工具 -->
             <dependency>
                 <groupId>org.mt</groupId>
-                <artifactId>mortnon-utils</artifactId>
+                <artifactId>mortnon-framework</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
@@ -72,13 +72,6 @@
             <dependency>
                 <groupId>org.mt</groupId>
                 <artifactId>mortnon-service</artifactId>
-                <version>${mortnon.version}</version>
-            </dependency>
-
-            <!-- 业务层 -->
-            <dependency>
-                <groupId>org.mt</groupId>
-                <artifactId>mortnon-biz</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
@@ -138,10 +131,9 @@
     </dependencyManagement>
 
     <modules>
-        <module>mortnon-utils</module>
+        <module>mortnon-framework</module>
         <module>mortnon-dal</module>
         <module>mortnon-service</module>
-        <module>mortnon-biz</module>
         <module>mortnon-web</module>
         <module>mortnon-boot</module>
         <module>mortnon-assembly</module>

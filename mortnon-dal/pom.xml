@@ -29,7 +29,7 @@
 
         <dependency>
             <groupId>org.mt</groupId>
-            <artifactId>mortnon-utils</artifactId>
+            <artifactId>mortnon-framework</artifactId>
         </dependency>
 
         <dependency>

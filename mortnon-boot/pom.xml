@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>org.mt</groupId>
-            <artifactId>mortnon-utils</artifactId>
+            <artifactId>mortnon-framework</artifactId>
         </dependency>
 
         <dependency>
@@ -81,6 +81,16 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
             </plugin>
         </plugins>

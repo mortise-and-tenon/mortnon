@@ -6,5 +6,6 @@ $$ \$$$  $$ |$$ /  $$ |$$ |  \__|  $$ |    $$ |\$$$$$$\  $$$$$$$$ |      $$ \$$ 
 $$ |\$  /$$ |$$ |  $$ |$$ |        $$ |$$\ $$ | \____$$\ $$   ____|      $$ |\$$\           $$ |   $$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |
 $$ | \_/ $$ |\$$$$$$  |$$ |        \$$$$  |$$ |$$$$$$$  |\$$$$$$$\        $$$$ $$\          $$ |   \$$$$$$$\ $$ |  $$ |\$$$$$$  |$$ |  $$ |
 \__|     \__| \______/ \__|         \____/ \__|\_______/  \_______|       \____\__|         \__|    \_______|\__|  \__| \______/ \__|  \__|
-                                                                                                        Mortnon Version:     ${mortnon.version}
-                                                                                                        Spring Boot Version: ${spring-boot.version}
+Application Name:    ${app.name}
+Mortnon Version:     ${app.project-version}  Mybatis Version:      ${app.mybatis-version}
+Spring Boot Version: ${spring-boot.version}  Mybatis-Plus Version: ${app.mybatis-version}

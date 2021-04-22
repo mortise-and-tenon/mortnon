@@ -1,9 +1,17 @@
 mortnon:
-  # 版本号
-  version: 0.0.1
+  multi-tenant:
+    # 开启多租户
+    enable-multi-tenant: false
+    # 默认租户
+    default-tenant-id: mortnon
+    # 租户列名
+    tenant-id-column: tenant_id
+    # 租户黑名单,名单中的表忽略租户信息,用逗号分割
+    tenant-black-list: sys_user,sys_role
   # 静态文件访问地址
   resource-handlers: |
     /api/**=classpath:/api/
+    /index/**=classpath:/index/
 
 springdoc:
   # swagger配置页面
@@ -21,17 +29,13 @@ server:
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
-    # tomcat最大线程数，默认为200
-    max-threads: 800
-    # Tomcat启动初始化的线程数，默认值25
-    min-spare-threads: 30
 
 
 mybatis-plus:
   # 启动时是否检查MyBatis XML文件是否存在
   check-config-location: true
   # 支持统配符 * 或者 ; 分割
-  typeEnumsPackage: org.mt.mortnon.*.enums
+  type-aliases-package: org.mt.mortnon.*.enums
   # MyBatis原生配置
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -45,6 +49,7 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
+    banner: false
   # mapper xml映射路径
   mapper-locations: classpath*:mapper/**/*Mapper.xml
 
@@ -85,13 +90,13 @@ spring:
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
       max-evictable-idle-time-millis: 900000
-      validationQuery: SELECT 1 FROM DUAL
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      webStatFilter:
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      webStat-filter:
         enabled: true
-      statViewServlet:
+      stat-view-servlet:
         enabled: true
         # 设置白名单，不填则允许所有访问
         allow:
@@ -127,3 +132,8 @@ spring:
         max-file-size: 55MB
         # 单个请求文件总计最大值
         max-request-size: 100MB
+
+app:
+  name: mortnon
+  project-version: '@project.version@'
+  mybatis-version: '@mybatis-plus.version@'

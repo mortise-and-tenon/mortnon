@@ -23,12 +23,15 @@ import java.util.Map;
 @Configuration
 public class MortnonWebConfig implements WebMvcConfigurer {
 
+    /** 基础配置 */
     @Autowired
     private MortnonProperties mortnonProperties;
 
+    /** api层日志拦截器 */
     @Autowired
     private ApiLogInterceptor apiLogInterceptor;
 
+    /** 多租户拦截器 */
     @Autowired
     private TenantInterceptor tenantInterceptor;
 
@@ -52,8 +55,10 @@ public class MortnonWebConfig implements WebMvcConfigurer {
         // 日志拦截器
         registry.addInterceptor(apiLogInterceptor);
 
-        // 租户拦截器
-        registry.addInterceptor(tenantInterceptor);
+        if (mortnonProperties.isEnableMultiTenant()) {
+            // 租户拦截器
+            registry.addInterceptor(tenantInterceptor);
+        }
     }
 
     @Override
