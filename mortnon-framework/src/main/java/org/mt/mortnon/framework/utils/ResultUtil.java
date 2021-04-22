@@ -1,8 +1,8 @@
-package org.mt.mortnon.utils;
+package org.mt.mortnon.framework.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.vo.MortnonResult;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.vo.MortnonResult;
 
 /**
  * 结果工具

@@ -1,4 +1,4 @@
-package org.mt.mortnon.constants;
+package org.mt.mortnon.framework.constants;
 
 /**
  * @author dongfangzan

@@ -1,8 +1,8 @@
 package org.mt.mortnon.config;
 
 import org.apache.commons.lang3.StringUtils;
-import org.mt.mortnon.properties.MortnonProperties;
-import org.mt.mortnon.utils.IniUtil;
+import org.mt.mortnon.framework.properties.MortnonProperties;
+import org.mt.mortnon.framework.utils.IniUtil;
 import org.mt.mortnon.web.interceptor.ApiLogInterceptor;
 import org.mt.mortnon.web.interceptor.TenantInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;

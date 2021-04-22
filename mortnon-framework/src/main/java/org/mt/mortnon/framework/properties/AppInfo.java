@@ -1,4 +1,4 @@
-package org.mt.mortnon.properties;
+package org.mt.mortnon.framework.properties;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

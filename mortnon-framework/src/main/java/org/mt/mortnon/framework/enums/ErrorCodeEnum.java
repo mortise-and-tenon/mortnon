@@ -1,4 +1,4 @@
-package org.mt.mortnon.enums;
+package org.mt.mortnon.framework.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.apache.commons.lang3.StringUtils;
