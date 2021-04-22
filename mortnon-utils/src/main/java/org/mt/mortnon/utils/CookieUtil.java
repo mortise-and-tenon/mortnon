@@ -50,6 +50,10 @@ public class CookieUtil {
      */
     public static String getCookieValue(HttpServletRequest request, String key) {
         Cookie[] cookies = request.getCookies();
+        if (null == cookies) {
+            return null;
+        }
+
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(key)) {
                 return cookie.getValue();

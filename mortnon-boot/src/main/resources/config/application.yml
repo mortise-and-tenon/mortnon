@@ -4,6 +4,7 @@ mortnon:
   # 静态文件访问地址
   resource-handlers: |
     /api/**=classpath:/api/
+    /index/**=classpath:/index/
 
 springdoc:
   # swagger配置页面
