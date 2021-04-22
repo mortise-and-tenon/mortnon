@@ -10,7 +10,6 @@ import org.mt.mortnon.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -48,7 +47,6 @@ public class HelloServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> im
     }
 
     @Override
-    @Transactional
     public SysUser saveUser(SysUser sysUser) {
         log.info("当前租户id为{}", MortnonContextHolder.getTenantId());
 
