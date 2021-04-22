@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author dongfangzan
  * @date 20.4.21 11:16 上午
  */
-public class ModelConvertor {
+public class ModelConvertorUtil {
 
     /**
      * 创建类的一个实例

@@ -50,6 +50,7 @@ public class CookieUtil {
      */
     public static String getCookieValue(HttpServletRequest request, String key) {
         Cookie[] cookies = request.getCookies();
+        // 这里一定要判空，不然可能导致大量报错影响页面性能
         if (null == cookies) {
             return null;
         }

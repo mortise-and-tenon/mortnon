@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TenantInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response,
+                             Object handler) throws Exception {
         setTenantId(request);
 
         return true;
@@ -51,7 +53,10 @@ public class TenantInterceptor implements HandlerInterceptor {
 
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request,
+                                HttpServletResponse response,
+                                Object handler,
+                                Exception ex) throws Exception {
         // 清除租户
         MortnonContextHolder.clear();
     }

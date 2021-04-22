@@ -4,12 +4,12 @@
 [stripes=even]
 |====================
 |Version |  Update Time  | Status | Author |  Description
-|v2021-04-20 16:08:28|2021-04-20 16:08:28|auto|@zhangsiyuan|Created by smart-doc
+|v2021-04-22 11:32:06|2021-04-22 11:32:06|auto|@zhangsiyuan|Created by smart-doc
 |====================
 
 
-== hello world
-=== Hello Mortnon
+== Demo
+=== hello world
 *URL:* /hello
 
 *Type:* GET
@@ -50,15 +50,15 @@ curl -X GET -H 'token:55' -i /hello
 *Response-example:*
 ----
 {
-	"data": "ogudxz",
+	"data": "ytwbfk",
 	"error_code": "00000",
 	"message": "success",
 	"success": true
 }
 ----
 
-=== Hello Mortnon with validate
-*URL:* /hello
+=== 表单提交demo
+*URL:* /form
 
 *Type:* POST
 
@@ -84,17 +84,17 @@ curl -X GET -H 'token:55' -i /hello
 [stripes=even]
 |====================
 |Parameter | Type|Description|Required|Since
-|id|string|id|true|-
+|id|int64|id|true|-
 |name|string|姓名|true|-
 |age|int32|年龄|true|-
 |====================
 
 *Request-example:*
 ----
-curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /hello? --data '{
-	"id": "94",
-	"name": "晓博.唐",
-	"age": sdfwefwefoweruoewiur
+curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /form? --data '{
+	"id": 1,
+	"name": "东方赞",
+	"age": 12
 }'
 ----
 *Response-fields:*
@@ -104,9 +104,9 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i
 |====================
 |Field | Type|Description|Since
 |data|object|结果|-
+|└─id|int64|id|-
 |└─name|string|姓名|-
-|└─hello|string|欢迎语|-
-|└─id|int64|No comments found.|-
+|└─age|int32|年龄|-
 |error_code|string|错误码|-
 |message|string|错误描述|-
 |success|boolean|是否成功|-
@@ -116,9 +116,9 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i
 ----
 {
 	"data": {
-		"name": "晓博.唐",
-		"hello": "d252ag",
-		"id": 539
+		"id": 1,
+		"name": "东方赞",
+		"age": 12
 	},
 	"error_code": "00000",
 	"message": "success",
@@ -126,8 +126,8 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i
 }
 ----
 
-=== Hello Mortnon with data list by name convert.
-*URL:* /hello/all
+=== 验证错误
+*URL:* /error
 
 *Type:* GET
 
@@ -150,150 +150,7 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i
 
 *Request-example:*
 ----
-curl -X GET -H 'token:55' -i /hello/all
-----
-*Response-fields:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Field | Type|Description|Since
-|data|object|结果|-
-|└─id|int64|No comments found.|-
-|└─user_name|string|用户名|-
-|└─nick_name|string|昵称|-
-|└─email|string|email|-
-|└─sex|string|性别|-
-|error_code|string|错误码|-
-|message|string|错误描述|-
-|success|boolean|是否成功|-
-|====================
-
-*Response-example:*
-----
-{
-	"data": [
-		{
-			"id": 116,
-			"user_name": "晓博.唐",
-			"nick_name": "lynsey.kuphal",
-			"email": "正豪.黎@yahoo.com",
-			"sex": "e3lsaz"
-		}
-	],
-	"error_code": "00000",
-	"message": "success",
-	"success": true
-}
-----
-
-=== 分页查询用户信息
-*URL:* /hello/page
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /hello/page
-----
-*Response-fields:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Field | Type|Description|Since
-|data|object|结果|-
-|└─total|int64|No comments found.|-
-|└─size|int64|No comments found.|-
-|└─pages|int64|No comments found.|-
-|└─current|int64|No comments found.|-
-|└─records|array|No comments found.|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─id|int64|主键|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─gmt_create|string|创建时间|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─gmt_modify|string|修改时间|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─tenant_id|string|租户id|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─user_name|string|用户名|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─nick_name|string|昵称|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─email|string|email|-
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─sex|string|性别|-
-|└─search_count|boolean|No comments found.|-
-|└─hit_count|boolean|No comments found.|-
-|error_code|string|错误码|-
-|message|string|错误描述|-
-|success|boolean|是否成功|-
-|====================
-
-*Response-example:*
-----
-{
-	"data": {
-		"total": 328,
-		"size": 867,
-		"pages": 600,
-		"current": 53,
-		"records": [
-			{
-				"id": 131,
-				"gmt_create": "2021-04-20",
-				"gmt_modify": "2021-04-20",
-				"tenant_id": "94",
-				"user_name": "晓博.唐",
-				"nick_name": "lynsey.kuphal",
-				"email": "正豪.黎@yahoo.com",
-				"sex": "adb0db"
-			}
-		],
-		"search_count": true,
-		"hit_count": true
-	},
-	"error_code": "00000",
-	"message": "success",
-	"success": true
-}
-----
-
-=== 调用异常接口
-*URL:* /exception
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /exception
+curl -X GET -H 'token:55' -i /error
 ----
 *Response-fields:*
 
@@ -315,6 +172,39 @@ curl -X GET -H 'token:55' -i /exception
 	"message": "success",
 	"success": true
 }
+----
+
+== 首页
+=== 跳转到mortnon首页
+*URL:* /
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /
+----
+
+*Response-example:*
+----
+string
 ----
 
 == api工具

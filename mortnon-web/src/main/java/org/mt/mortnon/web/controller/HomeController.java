@@ -17,7 +17,7 @@ public class HomeController {
      * 跳转到mortnon首页
      *
      * @return mortnon首页
-     * @page https://mortise-and-tenon.gitee.io/mortnon-docs/#/
+     * @page /index/index.html
      */
     @GetMapping("/")
     public String home() {

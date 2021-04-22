@@ -7,7 +7,7 @@ import com.alibaba.druid.util.Utils;
 import org.mt.mortnon.datasource.DynamicDataSource;
 import org.mt.mortnon.enums.DataSourceType;
 import org.mt.mortnon.properties.DruidProperties;
-import org.mt.mortnon.utils.spring.SpringUtils;
+import org.mt.mortnon.utils.SpringUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -61,7 +61,7 @@ public class DruidConfig {
      */
     public void setDataSource(Map<Object, Object> targetDataSources, String sourceName, String beanName) {
         try {
-            DataSource dataSource = SpringUtils.getBean(beanName);
+            DataSource dataSource = SpringUtil.getBean(beanName);
             targetDataSources.put(sourceName, dataSource);
         } catch (Exception e) {
         }

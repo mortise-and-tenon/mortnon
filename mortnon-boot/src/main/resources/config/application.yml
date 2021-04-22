@@ -1,6 +1,13 @@
 mortnon:
-  # 版本号
-  version: 0.0.1
+  multi-tenant:
+    # 开启多租户
+    enable-multi-tenant: true
+    # 默认租户
+    default-tenant-id: mortnon
+    # 租户列名
+    tenant-id-column: tenant_id
+    # 租户黑名单,名单中的表忽略租户信息
+    tenant-black-list: |
   # 静态文件访问地址
   resource-handlers: |
     /api/**=classpath:/api/
@@ -22,10 +29,6 @@ server:
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
-    # tomcat最大线程数，默认为200
-    max-threads: 800
-    # Tomcat启动初始化的线程数，默认值25
-    min-spare-threads: 30
 
 
 mybatis-plus:
@@ -46,6 +49,7 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
+    banner: false
   # mapper xml映射路径
   mapper-locations: classpath*:mapper/**/*Mapper.xml
 
@@ -128,3 +132,8 @@ spring:
         max-file-size: 55MB
         # 单个请求文件总计最大值
         max-request-size: 100MB
+
+app:
+  name: mortnon
+  project-version: '@project.version@'
+  mybatis-version: '@mybatis-plus.version@'

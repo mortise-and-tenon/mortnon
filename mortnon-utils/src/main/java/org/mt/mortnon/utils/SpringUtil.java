@@ -1,4 +1,4 @@
-package org.mt.mortnon.utils.spring;
+package org.mt.mortnon.utils;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.aop.framework.AopContext;
@@ -18,7 +18,7 @@ import java.util.Arrays;
  * @author ruoyi
  */
 @Component
-public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationContextAware {
+public final class SpringUtil implements BeanFactoryPostProcessor, ApplicationContextAware {
     /**
      * Spring应用上下文环境
      */
@@ -28,12 +28,12 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        SpringUtils.beanFactory = beanFactory;
+        SpringUtil.beanFactory = beanFactory;
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringUtils.applicationContext = applicationContext;
+        SpringUtil.applicationContext = applicationContext;
     }
 
     /**

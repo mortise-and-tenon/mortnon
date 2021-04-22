@@ -1,5 +1,7 @@
 package org.mt.mortnon.web.vo;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
@@ -10,17 +12,20 @@ import javax.validation.constraints.NotNull;
  * @date 2021-04-13 12:02:23
  * @author dongfangzan
  */
-public class HelloInput {
+@Data
+@Accessors(chain = true)
+public class DemoInput {
 
     /**
      * id
+     * @mock 1
      */
     @NotNull(message = "id不能为空")
-    private String id;
+    private Long id;
 
     /**
      * 姓名
-     * @required
+     * @mock 东方赞
      */
     @NotNull(message = "姓名不能为空")
     private String name;
@@ -32,28 +37,4 @@ public class HelloInput {
     @NotNull
     @Range(min = 0, max = 120, message = "年龄必须在0到120之间")
     private int age;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
