@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerIntercept
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.StringValue;
 import org.apache.commons.collections.CollectionUtils;
-import web.MortnonContextHolder;
 import org.mt.mortnon.framework.properties.MortnonProperties;
+import org.mt.mortnon.framework.web.MortnonContextHolder;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

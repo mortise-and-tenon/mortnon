@@ -6,12 +6,17 @@ import org.mt.mortnon.framework.utils.IniUtil;
 import org.mt.mortnon.web.interceptor.ApiLogInterceptor;
 import org.mt.mortnon.web.interceptor.TenantInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -55,6 +60,9 @@ public class MortnonWebConfig implements WebMvcConfigurer {
         // 日志拦截器
         registry.addInterceptor(apiLogInterceptor);
 
+        // 国际化
+        registry.addInterceptor(localeChangeInterceptor());
+
         if (mortnonProperties.isEnableMultiTenant()) {
             // 租户拦截器
             registry.addInterceptor(tenantInterceptor);
@@ -68,5 +76,23 @@ public class MortnonWebConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns("*")
                 .allowedMethods("*")
                 .allowCredentials(true);
+    }
+
+    /**
+     * 国际化解析器，使用cookie中的locale进行解析，默认zh_CN
+     */
+    @Bean
+    public LocaleResolver localeResolver() {
+        CookieLocaleResolver slr = new CookieLocaleResolver();
+        slr.setCookieName(LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
+        slr.setCookieMaxAge(30*24*60*60);
+        slr.setDefaultLocale(Locale.CHINA);
+
+        return slr;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        return new LocaleChangeInterceptor();
     }
 }

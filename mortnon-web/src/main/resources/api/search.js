@@ -1,59 +1,52 @@
 let api = [];
 api.push({
-    alias: 'DemoController',
+    alias: 'ApiController',
     order: '1',
-    link: 'demo',
-    desc: 'Demo',
+    link: 'api工具',
+    desc: 'api工具',
     list: []
 })
 api[0].list.push({
     order: '1',
-    desc: 'hello world',
+    desc: '跳转到api页面',
 });
 api[0].list.push({
     order: '2',
+    desc: '跳转到swagger页面',
+});
+api.push({
+    alias: 'DemoController',
+    order: '2',
+    link: 'demo',
+    desc: 'Demo',
+    list: []
+})
+api[1].list.push({
+    order: '1',
+    desc: 'hello world',
+});
+api[1].list.push({
+    order: '2',
     desc: '表单提交demo',
 });
-api[0].list.push({
+api[1].list.push({
     order: '3',
     desc: '验证错误',
 });
 api.push({
     alias: 'HomeController',
-    order: '2',
+    order: '3',
     link: '首页',
     desc: '首页',
     list: []
 })
-api[1].list.push({
+api[2].list.push({
     order: '1',
     desc: '跳转到mortnon首页',
 });
 api.push({
-    alias: 'ApiController',
-    order: '3',
-    link: 'api工具',
-    desc: 'api工具',
-    list: []
-})
-api[2].list.push({
-    order: '1',
-    desc: '跳转到api页面',
-});
-api[2].list.push({
-    order: '2',
-    desc: '跳转到swagger页面',
-});
-api.push({
-    alias: 'error',
-    order: '4',
-    link: 'error_code_list',
-    desc: '错误码列表',
-    list: []
-})
-api.push({
     alias: 'dict',
-    order: '5',
+    order: '4',
     link: 'dict_list',
     desc: '数据字典',
     list: []

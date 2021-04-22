@@ -4,208 +4,9 @@
 [stripes=even]
 |====================
 |Version |  Update Time  | Status | Author |  Description
-|v2021-04-22 11:32:06|2021-04-22 11:32:06|auto|@zhangsiyuan|Created by smart-doc
+|v2021-04-22 21:05:10|2021-04-22 21:05:10|auto|@张思远|Created by smart-doc
 |====================
 
-
-== Demo
-=== hello world
-*URL:* /hello
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /hello
-----
-*Response-fields:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Field | Type|Description|Since
-|data|object|结果|-
-|error_code|string|错误码|-
-|message|string|错误描述|-
-|success|boolean|是否成功|-
-|====================
-
-*Response-example:*
-----
-{
-	"data": "ytwbfk",
-	"error_code": "00000",
-	"message": "success",
-	"success": true
-}
-----
-
-=== 表单提交demo
-*URL:* /form
-
-*Type:* POST
-
-*Author:* dongfangzan
-
-*Content-Type:* application/json; charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-*Body-parameters:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Parameter | Type|Description|Required|Since
-|id|int64|id|true|-
-|name|string|姓名|true|-
-|age|int32|年龄|true|-
-|====================
-
-*Request-example:*
-----
-curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /form? --data '{
-	"id": 1,
-	"name": "东方赞",
-	"age": 12
-}'
-----
-*Response-fields:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Field | Type|Description|Since
-|data|object|结果|-
-|└─id|int64|id|-
-|└─name|string|姓名|-
-|└─age|int32|年龄|-
-|error_code|string|错误码|-
-|message|string|错误描述|-
-|success|boolean|是否成功|-
-|====================
-
-*Response-example:*
-----
-{
-	"data": {
-		"id": 1,
-		"name": "东方赞",
-		"age": 12
-	},
-	"error_code": "00000",
-	"message": "success",
-	"success": true
-}
-----
-
-=== 验证错误
-*URL:* /error
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /error
-----
-*Response-fields:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Field | Type|Description|Since
-|data|object|结果|-
-|error_code|string|错误码|-
-|message|string|错误描述|-
-|success|boolean|是否成功|-
-|====================
-
-*Response-example:*
-----
-{
-	"data": null,
-	"error_code": "00000",
-	"message": "success",
-	"success": true
-}
-----
-
-== 首页
-=== 跳转到mortnon首页
-*URL:* /
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /
-----
-
-*Response-example:*
-----
-string
-----
 
 == api工具
 === 跳转到api页面
@@ -272,19 +73,203 @@ curl -X GET -H 'token:55' -i /swagger
 string
 ----
 
-== 错误码列表
+== Demo
+=== hello world
+*URL:* /demo/hello
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
 
 [width="100%",options="header"]
 [stripes=even]
 |====================
-|Error code |Description
-|00000|success
-|A0001|user end error
-|A0002|param error
-|A0100|user register error
-|A0101|user did not agree to privacy agreement
-|A0110|username check failed
-|A0111|username already exists
-|B0001|system error
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
 |====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /demo/hello
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": "uhv8m3",
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 表单提交demo
+*URL:* /demo/form
+
+*Type:* POST
+
+*Author:* dongfangzan
+
+*Content-Type:* application/json; charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+*Body-parameters:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Parameter | Type|Description|Required|Since
+|id|int64|id|true|-
+|name|string|姓名|true|-
+|age|int32|年龄|true|-
+|====================
+
+*Request-example:*
+----
+curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /demo/form? --data '{
+	"id": 1,
+	"name": "东方赞",
+	"age": 12
+}'
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|└─id|int64|id|-
+|└─name|string|姓名|-
+|└─age|int32|年龄|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": {
+		"id": 1,
+		"name": "东方赞",
+		"age": 12
+	},
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 验证错误
+*URL:* /demo/error
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /demo/error
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": null,
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+== 首页
+=== 跳转到mortnon首页
+*URL:* /
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+*Request-headers:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Header | Type|Description|Required|Since
+|token|string|desc|false|-
+
+|====================
+
+
+
+
+*Request-example:*
+----
+curl -X GET -H 'token:55' -i /
+----
+
+*Response-example:*
+----
+string
+----
+
 
