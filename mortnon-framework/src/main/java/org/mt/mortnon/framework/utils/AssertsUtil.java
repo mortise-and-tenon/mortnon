@@ -1,7 +1,7 @@
-package org.mt.mortnon.utils;
+package org.mt.mortnon.framework.utils;
 
-import org.mt.mortnon.enums.ErrorCodeEnum;
-import org.mt.mortnon.exceptions.MortnonBaseException;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.exceptions.MortnonBaseException;
 
 /**
  * 服务断言工具

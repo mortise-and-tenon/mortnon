@@ -1,4 +1,4 @@
-package org.mt.mortnon.enums;
+package org.mt.mortnon.framework.enums;
 
 /**
  * 数据源

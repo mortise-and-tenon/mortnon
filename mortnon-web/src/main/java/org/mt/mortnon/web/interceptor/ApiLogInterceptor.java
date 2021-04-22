@@ -2,7 +2,7 @@ package org.mt.mortnon.web.interceptor;
 
 import io.github.ljwlgl.util.NetworkUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.mt.mortnon.constants.MortnonConstants;
+import org.mt.mortnon.framework.constants.MortnonConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 
-import static org.mt.mortnon.constants.CharConstants.FALSE_TAG;
-import static org.mt.mortnon.constants.CharConstants.TRUE_TAG;
+import static org.mt.mortnon.framework.constants.CharConstants.FALSE_TAG;
+import static org.mt.mortnon.framework.constants.CharConstants.TRUE_TAG;
 import static org.springframework.http.HttpHeaders.USER_AGENT;
 
 /**

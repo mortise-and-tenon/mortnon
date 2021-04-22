@@ -1,4 +1,4 @@
-package org.mt.mortnon.vo;
+package org.mt.mortnon.framework.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -1,13 +1,11 @@
-package org.mt.mortnon.properties;
+package org.mt.mortnon.framework.properties;
 
 import com.google.common.collect.Lists;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
-import org.mt.mortnon.constants.CharConstants;
+import org.mt.mortnon.framework.constants.CharConstants;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
