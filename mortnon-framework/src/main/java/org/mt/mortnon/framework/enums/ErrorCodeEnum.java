@@ -49,6 +49,21 @@ public enum ErrorCodeEnum {
     USERNAME_ALREADY_EXISTS("A0111", "username already exists"),
 
     /**
+     * 用户身份校验失败
+     */
+    USER_IDENTITY_CHECK_FAILED("A0120", "user identity check failed"),
+
+    /**
+     * 用户登录过期
+     */
+    USER_LOGIN_EXPIRED("A0230", "user login time expired"),
+
+    /**
+     * 访问未授权
+     */
+    UNAUTHORIZED_ACCESS("A0301", "unauthorized access"),
+
+    /**
      * 系统异常
      */
     SYSTEM_ERROR("B0001", "system error"),

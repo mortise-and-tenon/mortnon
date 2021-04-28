@@ -4,74 +4,9 @@
 [stripes=even]
 |====================
 |Version |  Update Time  | Status | Author |  Description
-|v2021-04-22 21:05:10|2021-04-22 21:05:10|auto|@张思远|Created by smart-doc
+|v2021-04-28 15:23:27|2021-04-28 15:23:27|auto|@zhangsiyuan|Created by smart-doc
 |====================
 
-
-== api工具
-=== 跳转到api页面
-*URL:* /api
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /api
-----
-
-*Response-example:*
-----
-string
-----
-
-=== 跳转到swagger页面
-*URL:* /swagger
-
-*Type:* GET
-
-*Author:* dongfangzan
-
-*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
-
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
-
-
-
-
-*Request-example:*
-----
-curl -X GET -H 'token:55' -i /swagger
-----
-
-*Response-example:*
-----
-string
-----
 
 == Demo
 === hello world
@@ -83,22 +18,13 @@ string
 
 *Content-Type:* application/x-www-form-urlencoded;charset=utf-8
 
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
 
 
 
 
 *Request-example:*
 ----
-curl -X GET -H 'token:55' -i /demo/hello
+curl -X GET -i /demo/hello
 ----
 *Response-fields:*
 
@@ -115,7 +41,7 @@ curl -X GET -H 'token:55' -i /demo/hello
 *Response-example:*
 ----
 {
-	"data": "uhv8m3",
+	"data": "7h7qzy",
 	"error_code": "00000",
 	"message": "success",
 	"success": true
@@ -131,15 +57,6 @@ curl -X GET -H 'token:55' -i /demo/hello
 
 *Content-Type:* application/json; charset=utf-8
 
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
 
 
 
@@ -156,7 +73,7 @@ curl -X GET -H 'token:55' -i /demo/hello
 
 *Request-example:*
 ----
-curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i /demo/form? --data '{
+curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /demo/form? --data '{
 	"id": 1,
 	"name": "东方赞",
 	"age": 12
@@ -200,22 +117,13 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -H 'token:55' -i
 
 *Content-Type:* application/x-www-form-urlencoded;charset=utf-8
 
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
 
 
 
 
 *Request-example:*
 ----
-curl -X GET -H 'token:55' -i /demo/error
+curl -X GET -i /demo/error
 ----
 *Response-fields:*
 
@@ -249,22 +157,13 @@ curl -X GET -H 'token:55' -i /demo/error
 
 *Content-Type:* application/x-www-form-urlencoded;charset=utf-8
 
-*Request-headers:*
-
-[width="100%",options="header"]
-[stripes=even]
-|====================
-|Header | Type|Description|Required|Since
-|token|string|desc|false|-
-
-|====================
 
 
 
 
 *Request-example:*
 ----
-curl -X GET -H 'token:55' -i /
+curl -X GET -i /
 ----
 
 *Response-example:*
@@ -272,4 +171,121 @@ curl -X GET -H 'token:55' -i /
 string
 ----
 
+== api工具
+=== 跳转到api页面
+*URL:* /api
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /api
+----
+
+*Response-example:*
+----
+string
+----
+
+=== 跳转到swagger页面
+*URL:* /swagger
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /swagger
+----
+
+*Response-example:*
+----
+string
+----
+
+== 登录
+=== 用户名密码登录
+*URL:* /login/password
+
+*Type:* POST
+
+*Author:* dongfangzan
+
+*Content-Type:* application/json; charset=utf-8
+
+
+
+
+*Body-parameters:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Parameter | Type|Description|Required|Since
+|username|string|用户名|true|-
+|password|string|密码|true|-
+|====================
+
+*Request-example:*
+----
+curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/password? --data '{
+	"username": "admin",
+	"password": "123456"
+}'
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": "sgoc9z",
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+== 错误码列表
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Error code |Description
+|00000|success
+|A0001|user end error
+|A0002|param error
+|B0001|user register error
+|A0101|user did not agree to privacy agreement
+|A0110|username check failed
+|A0111|username already exists
+|A0120|user identity check failed
+|A0230|user login time expired
+|A0301|unauthorized access
+|B0001|system error
+|====================
 

@@ -13,7 +13,7 @@ import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-public class MortnonBaseException extends RuntimeException{
+public class MortnonBaseException extends RuntimeException implements MortnonException{
 
     /**
      * uid
@@ -60,4 +60,20 @@ public class MortnonBaseException extends RuntimeException{
 
     /** 错误信息 */
     private String message;
+
+    @Override
+    public ErrorCodeEnum getErrorCodeEnum() {
+        return errorCodeEnum;
+    }
+
+
+    @Override
+    public String errorCode() {
+        return errorCode;
+    }
+
+    @Override
+    public String message() {
+        return message;
+    }
 }

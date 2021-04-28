@@ -3,6 +3,7 @@ package org.mt.mortnon.web.interceptor;
 import io.github.ljwlgl.util.NetworkUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.mt.mortnon.framework.constants.MortnonConstants;
+import org.mt.mortnon.framework.utils.IpUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -39,8 +40,8 @@ public class ApiLogInterceptor implements HandlerInterceptor {
         long costTime = System.currentTimeMillis() - (long) request.getAttribute(MortnonConstants.LOGGER_SEND_TIME);
         String success = Objects.nonNull(request.getAttribute(MortnonConstants.EXCEPTION_TAG)) ? FALSE_TAG : TRUE_TAG;
         String host = request.getRemoteHost();
-        String ip = request.getRemoteAddr();
-        String localIp = NetworkUtil.getLocalHostAddress();
+        String ip = IpUtil.getRequestIp(request);
+        String localIp = IpUtil.getLocalhostIp();
         String localhost = NetworkUtil.getLocalHostName();
         String userAgent = request.getHeader(USER_AGENT);
 

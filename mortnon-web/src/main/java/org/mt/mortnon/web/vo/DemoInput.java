@@ -3,6 +3,7 @@ package org.mt.mortnon.web.vo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.validation.constraints.NotNull;
 

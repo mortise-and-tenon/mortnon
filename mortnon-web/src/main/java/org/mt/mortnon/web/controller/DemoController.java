@@ -62,7 +62,8 @@ public class DemoController {
         log.error("错误：调用异常测试日志");
 
         // 打印在common-error.log以及web-digest.log文件中，阻断流程，返回下列
-        AssertsUtil.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR, I18nUtil.getMessage(ErrorCodeEnum.SYSTEM_ERROR.getErrorCode()));
+        AssertsUtil.assertTrue(false, ErrorCodeEnum.SYSTEM_ERROR,
+                I18nUtil.getMessage(ErrorCodeEnum.SYSTEM_ERROR.getErrorCode()));
 
         return ResultUtil.success();
     }

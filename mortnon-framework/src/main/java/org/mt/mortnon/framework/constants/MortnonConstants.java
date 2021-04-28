@@ -14,4 +14,7 @@ public class MortnonConstants {
 
     /** 异常标记 */
     public static final String EXCEPTION_TAG = "exception_tag";
+
+    /** jwt 用户名*/
+    public static final String JWT_USERNAME = "username";
 }

@@ -13,14 +13,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "app")
 public class AppInfo {
 
     /** app 名称 */
-    @Value("${app.name}")
+    @Value("${mortnon.app.name}")
     private String name;
 
     /** app 版本 */
-    @Value("${app.project-version}")
+    @Value("${mortnon.app.project-version}")
     private String projectVersion;
 }

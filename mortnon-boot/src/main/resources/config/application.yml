@@ -1,4 +1,46 @@
 mortnon:
+  app:
+    name: mortnon
+    project-version: '@project.version@'
+    mybatis-version: '@mybatis-plus.version@'
+  shiro:
+    enable: true
+    anon:
+      # 排除登录页面
+      - /login,/logout,/login/password
+      # 排除api页面
+      - /api/**
+      # 排除首页
+      - /index/**
+      # 排除logo
+      - /favicon.ico
+    filter-chain-definitions: |
+      /resource/**=anon
+      /upload/**=anon
+      /verificationCode/**=anon
+      /api/**=anon
+      /demo/**=anon
+  jwt:
+    # token请求头名称
+    token-name: token
+    # jwt密钥
+    secret: 666666
+    # 发行人
+    issuer: ${mortnon.app.name}
+    # 观众
+    audience: web
+    # 默认过期时间1小时，单位：秒
+    expire-second: 36000
+    # 是否刷新token
+    refresh-token: true
+    # 刷新token的时间间隔，默认10分钟，单位：秒
+    refresh-token-countdown: 600
+    # redis校验jwt token是否存在,可选
+    redis-check: true
+    # true: 同一个账号只能是最后一次登录token有效，false：同一个账号可多次登录
+    single-login: false
+    # 盐值校验，如果不加自定义盐值，则使用secret校验
+    salt-check: true
   multi-tenant:
     # 开启多租户
     enable-multi-tenant: false
@@ -134,8 +176,3 @@ spring:
         max-file-size: 55MB
         # 单个请求文件总计最大值
         max-request-size: 100MB
-
-app:
-  name: mortnon
-  project-version: '@project.version@'
-  mybatis-version: '@mybatis-plus.version@'

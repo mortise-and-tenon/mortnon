@@ -2,11 +2,15 @@ package org.mt.mortnon.web.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.web.util.WebUtils;
 import org.mt.mortnon.framework.constants.CharConstants;
 import org.mt.mortnon.framework.constants.MortnonConstants;
 import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 import org.mt.mortnon.framework.exceptions.MortnonBaseException;
+import org.mt.mortnon.framework.exceptions.MortnonWebException;
 import org.mt.mortnon.framework.utils.ResultUtil;
+import org.mt.mortnon.framework.utils.WebUtil;
 import org.mt.mortnon.framework.vo.MortnonResult;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.ObjectError;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +44,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = Exception.class)
-    public <T> MortnonResult<T> exceptionHandler(HttpServletRequest request, Exception e) {
+    public <T> MortnonResult<T> exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
         // 将错误信息保存到上下文
         request.setAttribute(MortnonConstants.EXCEPTION_TAG, e);
 
@@ -53,6 +58,15 @@ public class GlobalExceptionHandler {
         }
 
         // 返回错误消息
+        String msg = StringUtils.isBlank(e.getMessage()) ? errorCodeEnum.getDescription() : e.getMessage();
+        return ResultUtil.fail(null, errorCodeEnum, msg);
+    }
+
+    @ExceptionHandler(value = MortnonWebException.class)
+    public <T> MortnonResult<T> handleWebException(HttpServletResponse response, Exception e) {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        ErrorCodeEnum errorCodeEnum = ((MortnonWebException) e).getErrorCodeEnum();
+
         String msg = StringUtils.isBlank(e.getMessage()) ? errorCodeEnum.getDescription() : e.getMessage();
         return ResultUtil.fail(null, errorCodeEnum, msg);
     }

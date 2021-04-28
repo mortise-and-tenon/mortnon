@@ -54,4 +54,18 @@ public class ResultUtil {
                 .setMessage(StringUtils.isBlank(msg) ? errorCodeEnum.getDescription() : msg)
                 .setData(t);
     }
+
+    /**
+     * 返回失败
+     *
+     * @param errorCodeEnum 错误码
+     * @param <T>           错误信息类型
+     * @return              结果
+     */
+    public static <T> MortnonResult<T> fail(ErrorCodeEnum errorCodeEnum) {
+        return new MortnonResult<T>()
+                .setSuccess(false)
+                .setErrorCode(errorCodeEnum.getErrorCode())
+                .setMessage(I18nUtil.getMessage(errorCodeEnum.getErrorCode()));
+    }
 }

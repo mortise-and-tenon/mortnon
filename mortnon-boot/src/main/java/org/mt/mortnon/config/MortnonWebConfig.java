@@ -40,6 +40,12 @@ public class MortnonWebConfig implements WebMvcConfigurer {
     @Autowired
     private TenantInterceptor tenantInterceptor;
 
+    /** locale cookie过期时间 */
+    private static final int LOCALE_COOKIE_MAX_AGE = 30*24*60*60;
+
+    /**
+     * 静态资源
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 设置项目静态资源访问
@@ -55,20 +61,10 @@ public class MortnonWebConfig implements WebMvcConfigurer {
         }
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        // 日志拦截器
-        registry.addInterceptor(apiLogInterceptor);
 
-        // 国际化
-        registry.addInterceptor(localeChangeInterceptor());
-
-        if (mortnonProperties.isEnableMultiTenant()) {
-            // 租户拦截器
-            registry.addInterceptor(tenantInterceptor);
-        }
-    }
-
+    /**
+     * 跨域
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // 跨域设置
@@ -85,14 +81,26 @@ public class MortnonWebConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         CookieLocaleResolver slr = new CookieLocaleResolver();
         slr.setCookieName(LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
-        slr.setCookieMaxAge(30*24*60*60);
+        slr.setCookieMaxAge(LOCALE_COOKIE_MAX_AGE);
         slr.setDefaultLocale(Locale.CHINA);
 
         return slr;
     }
 
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {
-        return new LocaleChangeInterceptor();
+    /**
+     * web拦截器
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 日志拦截器
+        registry.addInterceptor(apiLogInterceptor);
+
+        // 国际化
+        registry.addInterceptor(new LocaleChangeInterceptor());
+
+        if (mortnonProperties.isEnableMultiTenant()) {
+            // 租户拦截器
+            registry.addInterceptor(tenantInterceptor);
+        }
     }
 }
