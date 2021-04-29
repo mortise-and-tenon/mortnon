@@ -39,11 +39,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 统一异常处理
-     *
-     * @param request
-     * @param e
-     * @param <T>
-     * @return
      */
     @ExceptionHandler(value = Exception.class)
     public <T> MortnonResult<T> exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
@@ -64,6 +59,9 @@ public class GlobalExceptionHandler {
         return ResultUtil.fail(null, errorCodeEnum, msg);
     }
 
+    /**
+     * 处理未登录的异常
+     */
     @ExceptionHandler(value = MortnonWebException.class)
     public <T> MortnonResult<T> handleWebException(HttpServletResponse response, Exception e) {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -73,20 +71,19 @@ public class GlobalExceptionHandler {
         return ResultUtil.fail(null, errorCodeEnum, msg);
     }
 
+    /**
+     * 无权限处理
+     */
     @ExceptionHandler(value = UnauthorizedException.class)
-    public MortnonResult<Void> handleUnauthorized(HttpServletResponse response, UnauthorizedException e) {
+    public MortnonResult<Void> handleForbidden(HttpServletResponse response, UnauthorizedException e) {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 
-        return ResultUtil.fail(null, ErrorCodeEnum.FORBIDDEN, I18nUtil.getMessage(ErrorCodeEnum.FORBIDDEN.getErrorCode()));
+        return ResultUtil.fail(null, ErrorCodeEnum.FORBIDDEN,
+                I18nUtil.getMessage(ErrorCodeEnum.FORBIDDEN.getErrorCode()));
     }
 
     /**
      * 参数异常处理
-     *
-     * @param request
-     * @param e
-     * @param <T>
-     * @return
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public <T> MortnonResult<T> argumentNotValidExceptionHandler(HttpServletRequest request,

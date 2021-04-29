@@ -16,7 +16,6 @@
 
 package org.mt.mortnon.framework.utils;
 
-import com.alibaba.fastjson.JSON;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -47,7 +46,7 @@ public class JwtUtil {
 
     public JwtUtil(JwtProperties jwtProperties) {
         JwtUtil.jwtProperties = jwtProperties;
-        log.info(JSON.toJSONString(JwtUtil.jwtProperties));
+        log.info(JacksonUtil.objectToJson(JwtUtil.jwtProperties));
     }
 
     /**

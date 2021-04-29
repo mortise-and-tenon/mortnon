@@ -1,6 +1,5 @@
 package org.mt.mortnon.config;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -25,6 +24,7 @@ import org.mt.mortnon.framework.properties.JwtProperties;
 import org.mt.mortnon.framework.properties.ShiroPermissionProperties;
 import org.mt.mortnon.framework.properties.ShiroProperties;
 import org.mt.mortnon.framework.utils.IniUtil;
+import org.mt.mortnon.framework.utils.JacksonUtil;
 import org.mt.mortnon.service.login.LoginFactory;
 import org.mt.mortnon.web.shiro.jwt.JwtCredentialsMatcher;
 import org.mt.mortnon.web.shiro.jwt.JwtFilter;
@@ -188,7 +188,7 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 获取排除的路径
         List<String[]> anonList = shiroProperties.getAnon();
-        log.debug("anonList:{}", JSON.toJSONString(anonList));
+        log.debug("anonList:{}", JacksonUtil.objectToJson(anonList));
         if (CollectionUtils.isNotEmpty(anonList)) {
             anonList.forEach(anonArray -> {
                 if (ArrayUtils.isNotEmpty(anonArray)) {
@@ -203,7 +203,7 @@ public class ShiroConfig {
         String definitions = shiroProperties.getFilterChainDefinitions();
         if (StringUtils.isNotBlank(definitions)) {
             Map<String, String> section = IniUtil.parseIni(definitions);
-            log.debug("definitions:{}", JSON.toJSONString(section));
+            log.debug("definitions:{}", JacksonUtil.objectToJson(section));
             for (Map.Entry<String, String> entry : section.entrySet()) {
                 filterChainDefinitionMap.put(entry.getKey(), entry.getValue());
             }
@@ -211,7 +211,7 @@ public class ShiroConfig {
 
         // 获取自定义权限路径配置集合
         List<ShiroPermissionProperties> permissionConfigs = shiroProperties.getPermission();
-        log.debug("permissionConfigs:{}", JSON.toJSONString(permissionConfigs));
+        log.debug("permissionConfigs:{}", JacksonUtil.objectToJson(permissionConfigs));
         if (CollectionUtils.isNotEmpty(permissionConfigs)) {
             for (ShiroPermissionProperties permissionConfig : permissionConfigs) {
                 String url = permissionConfig.getUrl();
@@ -242,7 +242,7 @@ public class ShiroConfig {
             filterChainDefinitionMap.put("/**", ANON);
         }
 
-        log.debug("filterChainMap:{}", JSON.toJSONString(filterChainDefinitionMap));
+        log.debug("filterChainMap:{}", JacksonUtil.objectToJson(filterChainDefinitionMap));
 
         // 添加默认的filter
         Map<String, String> newFilterChainDefinitionMap = addDefaultFilterDefinition(filterChainDefinitionMap);
