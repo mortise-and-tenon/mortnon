@@ -94,6 +94,6 @@ public class GlobalExceptionHandler {
         String message = allErrors.stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.joining(CharConstants.SEMICOLON));
-        return ResultUtil.fail(null, ErrorCodeEnum.PARAM_ERROR, message);
+        return ResultUtil.fail(null, ErrorCodeEnum.PARAM_ERROR, I18nUtil.getMessage(message));
     }
 }

@@ -36,6 +36,6 @@ public class DemoInput {
      * @mock 12
      */
     @NotNull
-    @Range(min = 0, max = 120, message = "年龄必须在0到120之间")
+    @Range(min = 0, max = 120, message = "demo.input.age.validate.message")
     private int age;
 }

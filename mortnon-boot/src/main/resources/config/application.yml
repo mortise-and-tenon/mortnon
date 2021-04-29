@@ -100,7 +100,7 @@ logging:
 
 spring:
   messages:
-    basename: i18n/error_code, i18n/login
+    basename: i18n/error_code,i18n/message
   # 激活环境，local:本机环境/dev：测试机/test：集成测试环境/prod：生产环境，在主pom里增加或修改
   profiles:
     active: @profileActive@
