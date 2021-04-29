@@ -11,7 +11,6 @@ import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 import org.mt.mortnon.framework.properties.JwtProperties;
 import org.mt.mortnon.framework.utils.*;
 import org.mt.mortnon.framework.vo.MortnonResult;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -48,7 +47,7 @@ public class JwtFilter extends AuthenticatingFilter {
         String username = JwtUtil.getUsername(token);
         String salt = jwtProperties.getSecret();
         if (jwtProperties.isSaltCheck()) {
-            salt = loginFactory.getConfigLoginStorageService().generateSalt(username);
+            salt = loginFactory.getConfigLoginStorageService().getSaltFromCache(username);
         }
 
         return JwtToken.build(token, username, salt, jwtProperties.getExpireSecond(), tokenObj.getLoginType());

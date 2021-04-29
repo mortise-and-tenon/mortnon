@@ -12,8 +12,7 @@ import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 import org.mt.mortnon.framework.properties.JwtProperties;
 import org.mt.mortnon.framework.utils.ShiroAssertUtil;
 import org.mt.mortnon.service.login.LoginFactory;
-import org.mt.mortnon.service.login.LoginService;
-import org.mt.mortnon.service.login.enums.LoginType;
+import org.mt.mortnon.service.login.LoginStorageService;
 import org.mt.mortnon.service.login.model.JwtToken;
 import org.mt.mortnon.service.login.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +50,11 @@ public class JwtRealm extends AuthorizingRealm {
         String username = jwtToken.getUsername();
 
         // 根据登录方式获取登录服务
-        LoginService loginService = loginFactory.getLoginService(LoginType.PASSWORD);
-        LoginUser loginUser = loginService.getLoginUserByName(username);
+        LoginStorageService loginStorageService = loginFactory.getConfigLoginStorageService();
+        LoginUser loginUser = loginFactory.getConfigLoginStorageService().getLoginUserByName(username);
 
         // 构建权限信息
-        return loginService.buildAuthorizationInfo(loginUser);
+        return loginStorageService.buildAuthorizationInfo(loginUser);
     }
 
     /**

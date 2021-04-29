@@ -75,6 +75,9 @@ public class JwtTokenUtil {
             // 从请求参数中获取token
             token = request.getParameter(tokenName);
         }
+        if (StringUtils.isBlank(token)) {
+            token = CookieUtil.getCookieValue(request, tokenName);
+        }
         return token;
     }
 }

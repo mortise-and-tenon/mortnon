@@ -27,6 +27,8 @@
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <shiro.version>1.7.1</shiro.version>
         <jwt.version>3.10.1</jwt.version>
+        <ehcache.version>3.8.1</ehcache.version>
+        <jackson.version>2.11.4</jackson.version>
         <assembly.name>mortnon-${project.version}</assembly.name>
 
 
@@ -140,6 +142,18 @@
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <version>${ehcache.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
         </dependencies>

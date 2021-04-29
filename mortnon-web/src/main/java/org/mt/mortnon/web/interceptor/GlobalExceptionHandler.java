@@ -3,12 +3,14 @@ package org.mt.mortnon.web.interceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.web.util.WebUtils;
 import org.mt.mortnon.framework.constants.CharConstants;
 import org.mt.mortnon.framework.constants.MortnonConstants;
 import org.mt.mortnon.framework.enums.ErrorCodeEnum;
 import org.mt.mortnon.framework.exceptions.MortnonBaseException;
 import org.mt.mortnon.framework.exceptions.MortnonWebException;
+import org.mt.mortnon.framework.utils.I18nUtil;
 import org.mt.mortnon.framework.utils.ResultUtil;
 import org.mt.mortnon.framework.utils.WebUtil;
 import org.mt.mortnon.framework.vo.MortnonResult;
@@ -69,6 +71,13 @@ public class GlobalExceptionHandler {
 
         String msg = StringUtils.isBlank(e.getMessage()) ? errorCodeEnum.getDescription() : e.getMessage();
         return ResultUtil.fail(null, errorCodeEnum, msg);
+    }
+
+    @ExceptionHandler(value = UnauthorizedException.class)
+    public MortnonResult<Void> handleUnauthorized(HttpServletResponse response, UnauthorizedException e) {
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+
+        return ResultUtil.fail(null, ErrorCodeEnum.FORBIDDEN, I18nUtil.getMessage(ErrorCodeEnum.FORBIDDEN.getErrorCode()));
     }
 
     /**

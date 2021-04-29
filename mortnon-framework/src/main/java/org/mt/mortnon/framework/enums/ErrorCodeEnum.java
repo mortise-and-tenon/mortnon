@@ -53,6 +53,9 @@ public enum ErrorCodeEnum {
      */
     USER_IDENTITY_CHECK_FAILED("A0120", "user identity check failed"),
 
+    /** 用户名或密码错误 */
+    INVALID_USERNAME_OR_PASSWORD("A0210", "invalid username or password"),
+
     /**
      * 用户登录过期
      */
@@ -62,6 +65,11 @@ public enum ErrorCodeEnum {
      * 访问未授权
      */
     UNAUTHORIZED_ACCESS("A0301", "unauthorized access"),
+
+    /**
+     * 用户无权限
+     */
+    FORBIDDEN("A0310", "forbidden access"),
 
     /**
      * 系统异常

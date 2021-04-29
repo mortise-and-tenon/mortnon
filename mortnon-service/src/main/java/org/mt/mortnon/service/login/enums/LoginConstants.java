@@ -11,4 +11,22 @@ public class LoginConstants {
     public static final String LOCAL = "local";
 
     public static final String LOGIN_TYPE_PASSWORD = "password";
+
+    /**
+     * 登录用户token信息key
+     * login:token:tokenMd5
+     */
+    public static final String LOGIN_TOKEN = "login:token:%s";
+
+    /**
+     * 登录用户信息key
+     * login:user:username
+     */
+    public static final String LOGIN_USER = "login:user:%s";
+
+    /**
+     * 登录用户盐值信息key
+     * login:salt:username
+     */
+    public static final String LOGIN_SALT= "login:salt:%s";
 }

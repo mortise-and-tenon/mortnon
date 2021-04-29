@@ -55,6 +55,22 @@ api[3].list.push({
     order: '1',
     desc: '用户名密码登录',
 });
+api[3].list.push({
+    order: '2',
+    desc: '验证是否登录成功',
+});
+api[3].list.push({
+    order: '3',
+    desc: '获取登录用户信息',
+});
+api[3].list.push({
+    order: '4',
+    desc: '需要权限码',
+});
+api[3].list.push({
+    order: '5',
+    desc: '需要权限码Other',
+});
 api.push({
     alias: 'error',
     order: '5',

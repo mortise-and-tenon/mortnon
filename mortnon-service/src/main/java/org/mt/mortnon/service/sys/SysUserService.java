@@ -9,4 +9,11 @@ import org.mt.mortnon.service.base.BaseService;
  */
 public interface SysUserService extends BaseService<SysUser> {
 
+    /**
+     * 根据账户名获取用户信息
+     *
+     * @param username 账户名
+     * @return         用户信息
+     */
+    SysUser getUserByUsername(String username);
 }

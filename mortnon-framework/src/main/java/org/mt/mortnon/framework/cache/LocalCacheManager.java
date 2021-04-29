@@ -1,0 +1,85 @@
+package org.mt.mortnon.framework.cache;
+
+import org.ehcache.Cache;
+import org.ehcache.CacheManager;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.CacheManagerBuilder;
+import org.ehcache.config.builders.ExpiryPolicyBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.mt.mortnon.framework.properties.JwtProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.time.Duration;
+
+/**
+ * session 缓存管理器
+ * 缓存过期时间从配置中读取
+ *
+ * @author dongfangzan
+ * @date 29.4.21 10:27 上午
+ */
+@Component
+public class LocalCacheManager {
+
+    @Autowired
+    private JwtProperties jwtProperties;
+
+    private Cache<String, String> sessionCache;
+
+    private static final String SESSION_CACHE_NAME = "session";
+
+    @PostConstruct
+    public void init() {
+
+        CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true);
+
+        // 设置超时时间
+        CacheConfigurationBuilder<String, String> configurationBuilder =
+                CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class, ResourcePoolsBuilder.heap(100))
+                .withExpiry(ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofSeconds(jwtProperties.getExpireSecond())));
+
+        sessionCache = cacheManager.createCache(SESSION_CACHE_NAME, configurationBuilder);
+    }
+
+    /**
+     * 根据key获取缓存中存储的值
+     *
+     * @param key key
+     * @return    缓存中的值
+     */
+    public String getValue(String key) {
+        return sessionCache.get(key);
+    }
+
+    /**
+     * 向缓存中写入数据，如果缓存中已存在，则返回存在的数据
+     *
+     * @param key   key
+     * @param value value
+     * @return      如果已存在，返回value
+     */
+    public String putValueIfAbsent(String key, String value) {
+        return sessionCache.putIfAbsent(key, value);
+    }
+
+    /**
+     * 向缓存中写入数据，存在则覆盖
+     *
+     * @param key   key
+     * @param value value
+     */
+    public void putValue(String key, String value) {
+        sessionCache.put(key, value);
+    }
+
+    /**
+     * 删除缓存中的数据
+     *
+     * @param key value
+     */
+    public void remove(String key) {
+        sessionCache.remove(key);
+    }
+}

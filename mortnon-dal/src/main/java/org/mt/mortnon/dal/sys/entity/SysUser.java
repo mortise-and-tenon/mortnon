@@ -39,5 +39,5 @@ public class SysUser extends LogicDeleteEntity {
     private String head;
 
     /** 性别 */
-    private int gender;
+    private Integer sex;
 }

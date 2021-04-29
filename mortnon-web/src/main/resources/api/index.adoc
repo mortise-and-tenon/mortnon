@@ -4,7 +4,7 @@
 [stripes=even]
 |====================
 |Version |  Update Time  | Status | Author |  Description
-|v2021-04-28 15:23:27|2021-04-28 15:23:27|auto|@zhangsiyuan|Created by smart-doc
+|v2021-04-29 16:25:36|2021-04-29 16:25:36|auto|@zhangsiyuan|Created by smart-doc
 |====================
 
 
@@ -41,7 +41,7 @@ curl -X GET -i /demo/hello
 *Response-example:*
 ----
 {
-	"data": "7h7qzy",
+	"data": "kkj1qy",
 	"error_code": "00000",
 	"message": "success",
 	"success": true
@@ -239,13 +239,17 @@ string
 |Parameter | Type|Description|Required|Since
 |username|string|用户名|true|-
 |password|string|密码|true|-
+|verifyToken|string|验证码token|false|-
+|code|string|验证码|false|-
 |====================
 
 *Request-example:*
 ----
 curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/password? --data '{
 	"username": "admin",
-	"password": "123456"
+	"password": "123456",
+	"verifyToken": "0fzugv",
+	"code": "77553"
 }'
 ----
 *Response-fields:*
@@ -263,7 +267,178 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/passwo
 *Response-example:*
 ----
 {
-	"data": "sgoc9z",
+	"data": "rgkeap",
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 验证是否登录成功
+*URL:* /login/check
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /login/check
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": true,
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 获取登录用户信息
+*URL:* /login/loginUser
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /login/loginUser
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|└─id|string|登录用户id|-
+|└─username|string|用户名唯一键|-
+|└─login_type|enum|登录类型<br/>PASSWORD -(LoginConstants.LOGIN_TYPE_PASSWORD,"用户名密码登录")<br/>PHONE -("phone","手机验证码登录")<br/>OAUTH -("oauth","oauth登录")<br/>WECHAT -("wechat","微信登录")<br/>ALIPAY -("alipay","支付宝登录")<br/>WEIBO -("weibo","微博登录")<br/>QQ -("qq","qq登录")<br/>|-
+|└─permission_codes|array|权限码|-
+|└─roles|array|角色码|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": {
+		"id": "44",
+		"username": "天磊.宋",
+		"login_type": "PASSWORD",
+		"permission_codes": [
+			"in1kid"
+		],
+		"roles": [
+			"w9taqc"
+		]
+	},
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 需要权限码
+*URL:* /login/permission
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /login/permission
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": true,
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
+=== 需要权限码Other
+*URL:* /login/permissionOther
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /login/permissionOther
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": true,
 	"error_code": "00000",
 	"message": "success",
 	"success": true
@@ -284,8 +459,10 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/passwo
 |A0110|username check failed
 |A0111|username already exists
 |A0120|user identity check failed
+|A0210|invalid username or password
 |A0230|user login time expired
 |A0301|unauthorized access
+|A0310|forbidden access
 |B0001|system error
 |====================
 

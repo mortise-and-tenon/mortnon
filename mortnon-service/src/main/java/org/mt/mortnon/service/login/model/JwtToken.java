@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.HostAuthenticationToken;
+import org.mt.mortnon.framework.web.MortnonContextHolder;
 import org.mt.mortnon.service.login.enums.LoginType;
 import org.mt.mortnon.framework.utils.IpUtil;
 import org.mt.mortnon.framework.utils.JwtUtil;
@@ -50,6 +51,9 @@ public class JwtToken implements HostAuthenticationToken {
     /** 登录类型 */
     private LoginType loginType;
 
+    /** 租户id */
+    private String tenantId;
+
     @Override
     public Object getPrincipal() {
         return token;
@@ -81,7 +85,7 @@ public class JwtToken implements HostAuthenticationToken {
                 .setCreateTime(createTime)
                 .setExpireSecond(expireSecond)
                 .setExpireTime(expireTime)
-                .setLoginType(loginType);
-
+                .setLoginType(loginType)
+                .setTenantId(MortnonContextHolder.getTenantId());
     }
 }
