@@ -4,8 +4,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.mt.mortnon.service.login.model.JwtToken;
 import org.mt.mortnon.service.login.model.LoginUser;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * @author dongfangzan
  * @date 27.4.21 4:16 下午
@@ -66,4 +64,27 @@ public interface LoginStorageService {
      * @param username 用户名
      */
     void deleteToken(String token, String username);
+
+    /**
+     * 创建验证码
+     *
+     * @param key  key
+     * @param code code
+     */
+    void saveVerifyCode(String key, String code);
+
+    /**
+     * 删除验证码
+     *
+     * @param key code
+     */
+    void deleteVerifyCode(String key);
+
+    /**
+     * 验证验证码
+     *
+     * @param key
+     * @param code
+     */
+    String getVerifyCode(String key);
 }

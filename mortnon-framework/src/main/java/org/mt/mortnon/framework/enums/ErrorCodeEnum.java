@@ -62,6 +62,11 @@ public enum ErrorCodeEnum {
     USER_LOGIN_EXPIRED("A0230", "user login time expired"),
 
     /**
+     * 验证码错误
+     */
+    VERIFY_CODE_ERROR("A0240", "verify code error"),
+
+    /**
      * 访问未授权
      */
     UNAUTHORIZED_ACCESS("A0301", "unauthorized access"),

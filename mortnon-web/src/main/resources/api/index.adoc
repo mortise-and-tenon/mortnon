@@ -4,7 +4,7 @@
 [stripes=even]
 |====================
 |Version |  Update Time  | Status | Author |  Description
-|v2021-04-29 16:25:36|2021-04-29 16:25:36|auto|@zhangsiyuan|Created by smart-doc
+|v2021-04-30 11:48:22|2021-04-30 11:48:22|auto|@zhangsiyuan|Created by smart-doc
 |====================
 
 
@@ -41,7 +41,7 @@ curl -X GET -i /demo/hello
 *Response-example:*
 ----
 {
-	"data": "kkj1qy",
+	"data": "mu5m8z",
 	"error_code": "00000",
 	"message": "success",
 	"success": true
@@ -218,6 +218,51 @@ curl -X GET -i /swagger
 string
 ----
 
+== 验证码
+=== 获取验证码
+*URL:* /captcha/get
+
+*Type:* GET
+
+*Author:* dongfangzan
+
+*Content-Type:* application/x-www-form-urlencoded;charset=utf-8
+
+
+
+
+
+*Request-example:*
+----
+curl -X GET -i /captcha/get
+----
+*Response-fields:*
+
+[width="100%",options="header"]
+[stripes=even]
+|====================
+|Field | Type|Description|Since
+|data|object|结果|-
+|└─captcha_key|string|key|-
+|└─captcha_image|string|图片|-
+|error_code|string|错误码|-
+|message|string|错误描述|-
+|success|boolean|是否成功|-
+|====================
+
+*Response-example:*
+----
+{
+	"data": {
+		"captcha_key": "edh2m8",
+		"captcha_image": "hz47fn"
+	},
+	"error_code": "00000",
+	"message": "success",
+	"success": true
+}
+----
+
 == 登录
 === 用户名密码登录
 *URL:* /login/password
@@ -248,8 +293,8 @@ string
 curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/password? --data '{
 	"username": "admin",
 	"password": "123456",
-	"verifyToken": "0fzugv",
-	"code": "77553"
+	"verifyToken": "8lc5kp",
+	"code": "50457"
 }'
 ----
 *Response-fields:*
@@ -267,7 +312,7 @@ curl -X POST -H 'Content-Type: application/json; charset=utf-8' -i /login/passwo
 *Response-example:*
 ----
 {
-	"data": "rgkeap",
+	"data": "er3nkm",
 	"error_code": "00000",
 	"message": "success",
 	"success": true
@@ -339,7 +384,6 @@ curl -X GET -i /login/loginUser
 |data|object|结果|-
 |└─id|string|登录用户id|-
 |└─username|string|用户名唯一键|-
-|└─login_type|enum|登录类型<br/>PASSWORD -(LoginConstants.LOGIN_TYPE_PASSWORD,"用户名密码登录")<br/>PHONE -("phone","手机验证码登录")<br/>OAUTH -("oauth","oauth登录")<br/>WECHAT -("wechat","微信登录")<br/>ALIPAY -("alipay","支付宝登录")<br/>WEIBO -("weibo","微博登录")<br/>QQ -("qq","qq登录")<br/>|-
 |└─permission_codes|array|权限码|-
 |└─roles|array|角色码|-
 |error_code|string|错误码|-
@@ -351,14 +395,13 @@ curl -X GET -i /login/loginUser
 ----
 {
 	"data": {
-		"id": "44",
-		"username": "天磊.宋",
-		"login_type": "PASSWORD",
+		"id": "189",
+		"username": "思远.莫",
 		"permission_codes": [
-			"in1kid"
+			"v1pskr"
 		],
 		"roles": [
-			"w9taqc"
+			"da34f1"
 		]
 	},
 	"error_code": "00000",
@@ -461,8 +504,10 @@ curl -X GET -i /login/permissionOther
 |A0120|user identity check failed
 |A0210|invalid username or password
 |A0230|user login time expired
+|A0240|verify code error
 |A0301|unauthorized access
 |A0310|forbidden access
+|A0311|token expire
 |B0001|system error
 |====================
 

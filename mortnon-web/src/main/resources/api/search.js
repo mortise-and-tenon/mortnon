@@ -45,42 +45,53 @@ api[2].list.push({
     desc: '跳转到swagger页面',
 });
 api.push({
-    alias: 'LoginController',
+    alias: 'CaptchaController',
     order: '4',
-    link: '登录',
-    desc: '登录',
+    link: '验证码',
+    desc: '验证码',
     list: []
 })
 api[3].list.push({
     order: '1',
+    desc: '获取验证码',
+});
+api.push({
+    alias: 'LoginController',
+    order: '5',
+    link: '登录',
+    desc: '登录',
+    list: []
+})
+api[4].list.push({
+    order: '1',
     desc: '用户名密码登录',
 });
-api[3].list.push({
+api[4].list.push({
     order: '2',
     desc: '验证是否登录成功',
 });
-api[3].list.push({
+api[4].list.push({
     order: '3',
     desc: '获取登录用户信息',
 });
-api[3].list.push({
+api[4].list.push({
     order: '4',
     desc: '需要权限码',
 });
-api[3].list.push({
+api[4].list.push({
     order: '5',
     desc: '需要权限码Other',
 });
 api.push({
     alias: 'error',
-    order: '5',
+    order: '6',
     link: 'error_code_list',
     desc: '错误码列表',
     list: []
 })
 api.push({
     alias: 'dict',
-    order: '6',
+    order: '7',
     link: 'dict_list',
     desc: '数据字典',
     list: []

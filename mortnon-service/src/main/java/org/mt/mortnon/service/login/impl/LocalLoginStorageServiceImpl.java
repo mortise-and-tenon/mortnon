@@ -2,6 +2,7 @@ package org.mt.mortnon.service.login.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.mt.mortnon.framework.cache.LocalCacheManager;
 import org.mt.mortnon.framework.properties.JwtProperties;
@@ -91,5 +92,20 @@ public class LocalLoginStorageServiceImpl implements LoginStorageService {
         if (jwtProperties.isSaltCheck()) {
             localCacheManager.remove(String.format(LoginConstants.LOGIN_SALT, username));
         }
+    }
+
+    @Override
+    public void saveVerifyCode(String key, String code) {
+        localCacheManager.getCaptchaCache().put(String.format(LoginConstants.VERIFY_CODE, key), code);
+    }
+
+    @Override
+    public void deleteVerifyCode(String key) {
+        localCacheManager.remove(String.format(LoginConstants.VERIFY_CODE, key));
+    }
+
+    @Override
+    public String getVerifyCode(String key) {
+        return localCacheManager.getCaptchaCache().get(key);
     }
 }

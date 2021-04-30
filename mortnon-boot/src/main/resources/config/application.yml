@@ -3,6 +3,10 @@ mortnon:
     name: mortnon
     project-version: '@project.version@'
     mybatis-version: '@mybatis-plus.version@'
+  captcha:
+    enable: true
+    type: arithmetic
+    expire-seconds: 600
   shiro:
     enable: true
     anon:
@@ -17,7 +21,7 @@ mortnon:
     filter-chain-definitions: |
       /resource/**=anon
       /upload/**=anon
-      /verificationCode/**=anon
+      /captcha/**=anon
       /api/**=anon
       /demo/**=anon
   jwt:

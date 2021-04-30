@@ -6,6 +6,7 @@ import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.mt.mortnon.framework.properties.CaptchaProperties;
 import org.mt.mortnon.framework.properties.JwtProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,9 +27,16 @@ public class LocalCacheManager {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Autowired
+    private CaptchaProperties captchaProperties;
+
     private Cache<String, String> sessionCache;
 
+    private Cache<String, String> captchaCache;
+
     private static final String SESSION_CACHE_NAME = "session";
+
+    private static final String CAPTCHA_CACHE_NAME = "captcha";
 
     @PostConstruct
     public void init() {
@@ -40,7 +48,13 @@ public class LocalCacheManager {
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class, ResourcePoolsBuilder.heap(100))
                 .withExpiry(ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofSeconds(jwtProperties.getExpireSecond())));
 
+        CacheConfigurationBuilder<String, String> captchaConfigurationBuilder =
+                CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class, ResourcePoolsBuilder.heap(100))
+                        .withExpiry(ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofSeconds(captchaProperties.getExpireSeconds())));
+
         sessionCache = cacheManager.createCache(SESSION_CACHE_NAME, configurationBuilder);
+
+        captchaCache = cacheManager.createCache(CAPTCHA_CACHE_NAME, captchaConfigurationBuilder);
     }
 
     /**
@@ -81,5 +95,13 @@ public class LocalCacheManager {
      */
     public void remove(String key) {
         sessionCache.remove(key);
+    }
+
+    public Cache<String, String> getSessionCache() {
+        return sessionCache;
+    }
+
+    public Cache<String, String> getCaptchaCache() {
+        return captchaCache;
     }
 }

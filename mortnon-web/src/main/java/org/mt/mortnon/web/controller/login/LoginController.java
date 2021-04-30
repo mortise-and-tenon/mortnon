@@ -2,15 +2,19 @@ package org.mt.mortnon.web.controller.login;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.mt.mortnon.framework.enums.ErrorCodeEnum;
+import org.mt.mortnon.framework.properties.CaptchaProperties;
 import org.mt.mortnon.framework.properties.JwtProperties;
+import org.mt.mortnon.framework.utils.AssertI18nUtils;
 import org.mt.mortnon.framework.utils.CookieUtil;
 import org.mt.mortnon.framework.utils.JwtTokenUtil;
+import org.mt.mortnon.framework.utils.ResultUtil;
+import org.mt.mortnon.framework.vo.MortnonResult;
+import org.mt.mortnon.service.login.CaptchaService;
 import org.mt.mortnon.service.login.LoginFactory;
 import org.mt.mortnon.service.login.PasswordLoginService;
 import org.mt.mortnon.service.login.enums.LoginType;
 import org.mt.mortnon.service.login.model.JwtToken;
-import org.mt.mortnon.framework.utils.ResultUtil;
-import org.mt.mortnon.framework.vo.MortnonResult;
 import org.mt.mortnon.service.login.model.LoginUser;
 import org.mt.mortnon.web.controller.utils.LoginUtil;
 import org.mt.mortnon.web.vo.login.PasswordLoginInput;
@@ -18,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -37,6 +42,12 @@ public class LoginController {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Autowired
+    private CaptchaProperties captchaProperties;
+
+    @Autowired
+    private CaptchaService captchaService;
+
     /**
      * 用户名密码登录
      *
@@ -45,7 +56,10 @@ public class LoginController {
     @PostMapping("/password")
     public MortnonResult<String> passwordLogin(@Validated @RequestBody PasswordLoginInput input,
                                                HttpServletResponse response) {
-        PasswordLoginService loginService = (PasswordLoginService) loginFactory.getLoginService(LoginType.PASSWORD);
+        checkVerifyCode(input.getCode(), input.getVerifyToken());
+
+        PasswordLoginService loginService = (PasswordLoginService) loginFactory
+                .getLoginService(LoginType.PASSWORD);
 
         JwtToken token = loginService.authAndLogin(input.getUsername(), input.getPassword());
 
@@ -53,6 +67,16 @@ public class LoginController {
         response.setHeader(JwtTokenUtil.getTokenName(), token.getToken());
         CookieUtil.addCookie(response, jwtProperties.getTokenName(), token.getToken(), -1);
         return ResultUtil.success(token.getToken());
+    }
+
+    private void checkVerifyCode(String code, String verifyToken) {
+
+        if (!captchaProperties.isEnable()) {
+            return;
+        }
+
+        AssertI18nUtils.assertTrue(captchaService.verifyCaptcha(verifyToken, code),
+                ErrorCodeEnum.VERIFY_CODE_ERROR);
     }
 
     /**
