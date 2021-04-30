@@ -2,7 +2,6 @@ package org.mt.mortnon.framework.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -55,16 +54,6 @@ public class JwtProperties {
      * 刷新token倒计时，默认10分钟，10*60=600
      */
     private Integer refreshTokenCountdown;
-
-    /**
-     * redis校验jwt token是否存在
-     */
-    private boolean redisCheck;
-
-    /**
-     * 单用户登录，一个用户只能又一个有效的token
-     */
-    private boolean singleLogin;
 
     /**
      * 是否进行盐值校验
