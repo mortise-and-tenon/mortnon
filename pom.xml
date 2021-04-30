@@ -29,6 +29,7 @@
         <jwt.version>3.10.1</jwt.version>
         <ehcache.version>3.8.1</ehcache.version>
         <jackson.version>2.11.4</jackson.version>
+        <commons-pool2.version>2.8.0</commons-pool2.version>
         <assembly.name>mortnon-${project.version}</assembly.name>
 
 
@@ -160,6 +161,12 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
             </dependency>
 
         </dependencies>

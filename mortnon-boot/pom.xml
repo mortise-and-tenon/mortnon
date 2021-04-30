@@ -32,6 +32,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.mt</groupId>
             <artifactId>mortnon-framework</artifactId>
         </dependency>

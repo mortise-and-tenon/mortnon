@@ -1,7 +1,10 @@
 package org.mt.mortnon.service.login.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.mt.mortnon.framework.properties.JwtProperties;
 import org.mt.mortnon.service.login.LoginStorageService;
+import org.mt.mortnon.service.login.enums.LoginConstants;
 import org.mt.mortnon.service.login.model.JwtToken;
 import org.mt.mortnon.service.login.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,12 @@ public class RedisLoginStorageServiceImpl implements LoginStorageService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private JwtProperties jwtProperties;
+
     @Override
     public LoginUser getLoginUserByName(String username) {
-        return null;
+        return (LoginUser) redisTemplate.opsForValue().get(String.format(LoginConstants.LOGIN_USER, username));
     }
 
     @Override
@@ -34,26 +40,51 @@ public class RedisLoginStorageServiceImpl implements LoginStorageService {
 
     @Override
     public JwtToken exists(String token) {
-        return null;
+        String tokenMd5 = DigestUtils.md5Hex(token);
+        return (JwtToken) redisTemplate.opsForValue().get(String.format(LoginConstants.LOGIN_TOKEN, tokenMd5));
     }
 
     @Override
     public String getSaltFromCache(String username) {
-        return null;
+        return (String) redisTemplate.opsForValue().get(String.format(LoginConstants.LOGIN_SALT, username));
     }
 
     @Override
     public void saveToken(LoginUser loginUser, JwtToken jwtToken) {
+        String tokenMd5 = DigestUtils.md5Hex(jwtToken.getToken());
+        String tokenKey = String.format(LoginConstants.LOGIN_TOKEN, tokenMd5);
 
+        // 1. login:token:${tokenMd5}:${jwtToken}
+        redisTemplate.opsForValue().set(tokenKey, jwtToken);
+
+        // 2. login:user:${username}:${loginUser}
+        redisTemplate.opsForValue().set(String.format(LoginConstants.LOGIN_USER,
+                loginUser.getUsername()), loginUser);
+
+        if (jwtProperties.isSaltCheck()) {
+            // 3. login:salt:${username}:${salt}
+            redisTemplate.opsForValue().set(String.format(LoginConstants.LOGIN_SALT,
+                    loginUser.getUsername()), jwtToken.getSalt());
+        }
     }
 
     @Override
     public void refreshToken(String oldToken, String username, JwtToken newJwtToken) {
+        LoginUser loginUser = getLoginUserByName(username);
 
+        deleteToken(oldToken, username);
+
+        saveToken(loginUser, newJwtToken);
     }
 
     @Override
     public void deleteToken(String token, String username) {
+        String tokenMd5 = DigestUtils.md5Hex(token);
 
+        redisTemplate.delete(String.format(LoginConstants.LOGIN_TOKEN, tokenMd5));
+        redisTemplate.delete(String.format(LoginConstants.LOGIN_USER, username));
+        if (jwtProperties.isSaltCheck()) {
+            redisTemplate.delete(String.format(LoginConstants.LOGIN_SALT, username));
+        }
     }
 }
