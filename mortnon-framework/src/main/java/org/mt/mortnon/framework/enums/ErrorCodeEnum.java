@@ -72,6 +72,11 @@ public enum ErrorCodeEnum {
     FORBIDDEN("A0310", "forbidden access"),
 
     /**
+     * token已经过期
+     */
+    TOKEN_EXPIRE("A0311", "token expire"),
+
+    /**
      * 系统异常
      */
     SYSTEM_ERROR("B0001", "system error"),

@@ -29,4 +29,14 @@ public class LoginConstants {
      * login:salt:username
      */
     public static final String LOGIN_SALT= "login:salt:%s";
+
+    /**
+     * 不合法的token状态码
+     */
+    public static final int SC_INVALID_TOKEN = 461;
+
+    /**
+     * 刷新token状态码
+     */
+    public static final int SC_JWT_REFRESH_TOKEN = 460;
 }

@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * @author dongfangzan
  * @date 27.4.21 4:17 下午
@@ -50,7 +48,12 @@ public class RedisLoginStorageServiceImpl implements LoginStorageService {
     }
 
     @Override
-    public void refreshToken(JwtToken jwtToken, HttpServletResponse httpServletResponse) {
+    public void refreshToken(String oldToken, String username, JwtToken newJwtToken) {
+
+    }
+
+    @Override
+    public void deleteToken(String token, String username) {
 
     }
 }

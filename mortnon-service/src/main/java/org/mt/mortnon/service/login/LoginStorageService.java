@@ -56,8 +56,14 @@ public interface LoginStorageService {
     /**
      * 刷新token
      *
-     * @param jwtToken
-     * @param httpServletResponse
      */
-    void refreshToken(JwtToken jwtToken, HttpServletResponse httpServletResponse);
+    void refreshToken(String oldToken, String username, JwtToken newJwtToken);
+
+    /**
+     * 删除token
+     *
+     * @param token    token
+     * @param username 用户名
+     */
+    void deleteToken(String token, String username);
 }

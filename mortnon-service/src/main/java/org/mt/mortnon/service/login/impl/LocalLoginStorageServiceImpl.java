@@ -13,8 +13,6 @@ import org.mt.mortnon.service.login.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * @author dongfangzan
  * @date 27.4.21 4:17 下午
@@ -76,7 +74,22 @@ public class LocalLoginStorageServiceImpl implements LoginStorageService {
     }
 
     @Override
-    public void refreshToken(JwtToken jwtToken, HttpServletResponse httpServletResponse) {
-        // 内存缓存不用做任何事情
+    public void refreshToken(String oldToken, String username, JwtToken newJwtToken) {
+        LoginUser loginUser = getLoginUserByName(username);
+
+        deleteToken(oldToken, username);
+
+        saveToken(loginUser, newJwtToken);
+    }
+
+    @Override
+    public void deleteToken(String token, String username) {
+        String tokenMd5 = DigestUtils.md5Hex(token);
+
+        localCacheManager.remove(String.format(LoginConstants.LOGIN_TOKEN, tokenMd5));
+        localCacheManager.remove(String.format(LoginConstants.LOGIN_USER, username));
+        if (jwtProperties.isSaltCheck()) {
+            localCacheManager.remove(String.format(LoginConstants.LOGIN_SALT, username));
+        }
     }
 }
