@@ -67,7 +67,7 @@
         <moduleSet>
             <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
-                <include>org.mt:mortnon-boot</include>
+                <include>fun.mortnon:mortnon-boot</include>
             </includes>
             <binaries>
                 <!-- 将依赖的jar包抽取到lib目录中 -->

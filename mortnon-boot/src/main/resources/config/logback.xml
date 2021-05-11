@@ -151,7 +151,7 @@
     </appender>
 
     <!-- 系统模块日志级别控制  -->
-    <logger name="org.mt.mortnon" level="info" />
+    <logger name="fun.mortnon.mortnon" level="info" />
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="warn" />
 
@@ -170,15 +170,15 @@
         <appender-ref ref="api-digest-appender-async"/>
     </logger>
 
-    <logger name="org.mt.mortnon.web" level="info">
+    <logger name="fun.mortnon.mortnon.web" level="info">
         <appender-ref ref="web-digest-appender-async"/>
     </logger>
 
-    <logger name="org.mt.mortnon.service" level="info">
+    <logger name="fun.mortnon.mortnon.service" level="info">
         <appender-ref ref="service-digest-appender-async"/>
     </logger>
 
-    <logger name="org.mt.mortnon.dal" level="info">
+    <logger name="fun.mortnon.mortnon.dal" level="info">
         <appender-ref ref="dal-digest-appender-async"/>
     </logger>
 </configuration>

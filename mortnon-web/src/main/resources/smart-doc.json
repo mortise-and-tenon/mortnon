@@ -14,7 +14,7 @@
   ],
   "errorCodeDictionaries": [{
     "title": "业务错误码",
-    "enumClassName": "org.mt.mortnon.framework.enums.ErrorCodeEnum",
+    "enumClassName": "fun.mortnon.mortnon.framework.enums.ErrorCodeEnum",
     "codeField": "errorCode",
     "descField": "description"
   }]

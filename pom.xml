@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.mt</groupId>
+    <groupId>fun.mortnon</groupId>
     <artifactId>mortnon</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
@@ -55,35 +55,35 @@
 
             <!-- 通用工具 -->
             <dependency>
-                <groupId>org.mt</groupId>
+                <groupId>fun.mortnon</groupId>
                 <artifactId>mortnon-framework</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
             <!-- web层 -->
             <dependency>
-                <groupId>org.mt</groupId>
+                <groupId>fun.mortnon</groupId>
                 <artifactId>mortnon-web</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
             <!-- 启动 -->
             <dependency>
-                <groupId>org.mt</groupId>
+                <groupId>fun.mortnon</groupId>
                 <artifactId>mortnon-boot</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
             <!-- 领域服务层 -->
             <dependency>
-                <groupId>org.mt</groupId>
+                <groupId>fun.mortnon</groupId>
                 <artifactId>mortnon-service</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>
 
             <!-- 数据接入层 -->
             <dependency>
-                <groupId>org.mt</groupId>
+                <groupId>fun.mortnon</groupId>
                 <artifactId>mortnon-dal</artifactId>
                 <version>${mortnon.version}</version>
             </dependency>

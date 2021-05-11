@@ -19,7 +19,7 @@ repoUrl="https://gitee.com/mortise-and-tenon/mortnon.git"
 # mortnon 名称
 mortnonArtifact="mortnon"
 # mortnon group
-mortnonGroup="org.mt"
+mortnonGroup="fun.mortnon"
 # mortnon 版本
 mortnonVersion="0.0.1"
 
