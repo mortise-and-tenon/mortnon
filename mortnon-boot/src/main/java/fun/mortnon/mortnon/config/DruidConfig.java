@@ -1,5 +1,6 @@
 package fun.mortnon.mortnon.config;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
@@ -7,7 +8,6 @@ import com.alibaba.druid.util.Utils;
 import fun.mortnon.mortnon.framework.datasource.DynamicDataSource;
 import fun.mortnon.mortnon.framework.enums.DataSourceType;
 import fun.mortnon.mortnon.framework.properties.DruidProperties;
-import fun.mortnon.mortnon.framework.utils.SpringUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
